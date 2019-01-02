@@ -24,6 +24,16 @@ public class RequestAdapter implements WebMvcConfigurer {
     @Autowired
     private RequestInterceptor requestInterceptor;
 
+    /**
+     * 添加拦截器
+     * @param registry
+     */
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        // 注册自定义拦截器，添加拦截路径
+        registry.addInterceptor(requestInterceptor).addPathPatterns("/**");
+    }
+
     @Override
     public void addFormatters(FormatterRegistry formatterRegistry) {
 
@@ -77,16 +87,6 @@ public class RequestAdapter implements WebMvcConfigurer {
     @Override
     public void extendHandlerExceptionResolvers(List<HandlerExceptionResolver> list) {
 
-    }
-
-    /**
-     * 添加拦截器
-     * @param registry
-     */
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        //注册自定义拦截器，添加拦截路径
-        registry.addInterceptor(requestInterceptor).addPathPatterns("/**");
     }
 
     @Override
