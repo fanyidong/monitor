@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
- * 调用远程服务(login)
+ * 调用远程服务(login)接口类
  * @author fanyidong
  * @date Created in 2018-12-27
  */
