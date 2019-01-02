@@ -43,12 +43,12 @@ public class LoginController {
         // 获得登录后的用户信息
         User user = JSON.parseObject(JSON.toJSONString(res.getData()), User.class);
         if (user == null) {
-            return Response.failed(SYSTEM_ERROR).toString();
+            return Response.failed(WRONG_DATA).toString();
         }
         // 将用户信息存入session
         HttpSession session = request.getSession();
         session.setAttribute(USER_BEAN, user);
-        logger.info(USER_BEAN + "已存入Session" + user.toString());
+        logger.info(USER_BEAN + "已存入Session*****sessionId:" + session.getId() + user.toString());
         return res.toString();
     }
 
@@ -58,9 +58,6 @@ public class LoginController {
         Response res = loginRemote.userInfo(userId);
         if (res == null) {
             return Response.failed(RESPONSE_EMPTY).toString();
-        }
-        if (!res.isSuccess()) {
-            return res.toString();
         }
         return res.toString();
     }
