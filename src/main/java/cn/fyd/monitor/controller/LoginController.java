@@ -49,6 +49,7 @@ public class LoginController {
         HttpSession session = request.getSession();
         session.setAttribute(USER_BEAN, user);
         logger.info(USER_BEAN + "已存入Session*****sessionId:" + session.getId() + user.toString());
+        res.setData(null);
         return res.toString();
     }
 
