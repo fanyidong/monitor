@@ -2,6 +2,7 @@ package cn.fyd.monitor.controller;
 
 import cn.fyd.annotation.IsLogin;
 import cn.fyd.common.Response;
+import cn.fyd.model.ResetDto;
 import cn.fyd.model.User;
 import cn.fyd.monitor.remote.LoginRemote;
 import com.alibaba.fastjson.JSON;
@@ -48,7 +49,7 @@ public class LoginController {
         HttpSession session = request.getSession();
         session.setAttribute(USER_BEAN, user);
         logger.info(USER_BEAN + "已存入Session" + user.toString());
-        return Response.success().toString();
+        return res.toString();
     }
 
     @IsLogin
@@ -61,22 +62,31 @@ public class LoginController {
         if (!res.isSuccess()) {
             return res.toString();
         }
-        return Response.success(res.getData()).toString();
+        return res.toString();
     }
 
     @PostMapping("/regist")
     public String regist(User newUser) {
-        return loginRemote.regist(newUser).toString();
+        Response res = loginRemote.regist(newUser);
+        res.setMessage(REGIST_SUCCESS);
+        return res.toString();
     }
 
     @IsLogin
     @PostMapping("/edit")
     public String edit(User newUser, HttpServletRequest request) {
-        return loginRemote.edit(newUser).toString();
+        Response res = loginRemote.edit(newUser);
+        res.setMessage(EDIT_USER_MESSAGE_SUCCESS);
+        return res.toString();
     }
 
     @PostMapping("/sendEmail")
     public String sendEmail(String email) {
-        return loginRemote.sendEmail(email);
+        return loginRemote.sendEmail(email).toString();
+    }
+
+    @PostMapping("/reset")
+    public String reset(ResetDto dto) {
+        return loginRemote.reset(dto).toString();
     }
 }
