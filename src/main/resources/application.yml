@@ -8,8 +8,8 @@ spring:
 eureka:
   instance:
     #设置服务名称
-#    hostname: 39.108.52.40
-    hostname: 127.0.0.1
+    hostname: 39.108.52.40
+#    hostname: 127.0.0.1
   client:
     serviceUrl:
       defaultZone: http://${eureka.instance.hostname}:8001/eureka/
@@ -18,7 +18,7 @@ feign:
   hystrix:
     enable: true
 
-#feign调用默认是1000毫秒=1秒,应该设置成更长时间1000*60*5=5分钟
+#feign调用默认是1000毫秒=1秒,应该设置成更长时间1000*60=1分钟
 hystrix:
   command:
     default:
