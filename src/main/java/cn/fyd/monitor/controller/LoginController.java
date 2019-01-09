@@ -66,7 +66,9 @@ public class LoginController {
     @PostMapping("/regist")
     public String regist(User newUser) {
         Response res = loginRemote.regist(newUser);
-        res.setMessage(REGIST_SUCCESS);
+        if (res.isSuccess()) {
+            res.setMessage(REGIST_SUCCESS);
+        }
         return res.toString();
     }
 
@@ -74,7 +76,9 @@ public class LoginController {
     @PostMapping("/edit")
     public String edit(User newUser, HttpServletRequest request) {
         Response res = loginRemote.edit(newUser);
-        res.setMessage(EDIT_USER_MESSAGE_SUCCESS);
+        if (res.isSuccess()) {
+            res.setMessage(EDIT_USER_MESSAGE_SUCCESS);
+        }
         return res.toString();
     }
 
