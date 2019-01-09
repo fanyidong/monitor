@@ -41,6 +41,7 @@ ribbon:
 #远程服务名
 microService:
   login: monitor-login
+  job: monitor-job
 
 #设置需要输出包的日志级别
 logging:
