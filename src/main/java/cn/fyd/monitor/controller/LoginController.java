@@ -33,7 +33,7 @@ public class LoginController {
     @PostMapping("/login")
     public String login(String account, String password, HttpServletRequest request) {
         // 从子服务获取返回内容
-        Response res = loginRemote.login(account, password);
+        Response<User> res = loginRemote.login(account, password);
         if (res == null) {
             return Response.failed(RESPONSE_EMPTY).toString();
         }
@@ -57,7 +57,7 @@ public class LoginController {
     @PostMapping("/userInfo")
     public String login(String userId, HttpServletRequest request) {
         Response res = loginRemote.userInfo(userId);
-        if (res == null) {
+        if (res.getData() == null) {
             return Response.failed(RESPONSE_EMPTY).toString();
         }
         return res.toString();
