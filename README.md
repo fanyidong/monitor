@@ -1,5 +1,5 @@
 # monitor——主服务(http://127.0.0.1:8000)
-## 1. 登录服务
+## 1. 登录服务（已全部更新）
 ### 1. 登录
 * url地址：/login
 * 请求方式：post
@@ -8,12 +8,20 @@
 account:dd
 password:1
 ```  
-* 返回格式：
+* 返回格式（成功）：
 ```$xslt
 {
-    "success": true,
-    "message": null,
-    "data": null
+	"data": null,
+	"message": "成功",
+	"success": true
+}
+```
+* 返回格式（失败）：
+```$xslt
+{
+	"data": null,
+	"message": "失败[[登录子服务]密码错误]",
+	"success": false
 }
 ```
 
@@ -27,12 +35,20 @@ password:1
 email:123@qq.com
 mobile:10086
 ```
-* 返回格式：
+* 返回格式（成功）：
 ```$xslt
 {
-    "success": true,
-    "message": null,
-    "data": null
+    "data": null,
+    "message": "成功",
+    "success": true
+}
+```
+* 返回格式（失败）：
+```$xslt
+{
+    "data": null,
+    "message": "失败[[登录子服务]邮箱已被注册]",
+    "success": false
 }
 ```
 
@@ -43,18 +59,20 @@ mobile:10086
 ```$xslt
 userId:f6e51629-b2e0-4536-b2db-bdf98d97cc3d
 ```
-* 返回格式：
+* 返回格式（成功）：
 ```$xslt
 {
-    "success": true,
-	"message": null,
-	"data": {
-		"userId": "bf6eb812-4b38-4965-a121-bf297d58447c",
-		"account": "dd",
-		"password": "1",
-		"email": "123@qq.com",
-		"mobile": "10086"
-	}
+    "data": null,
+    "message": "成功",
+    "success": true
+}
+```
+* 返回格式（失败）：
+```$xslt
+{
+    "data": null,
+    "message": "失败[操作非本人数据，请重试]",
+    "success": false
 }
 ```
 
@@ -68,12 +86,20 @@ account:dd
 email:1234@qq.com
 mobile:10086
 ```
-* 返回格式：
+* 返回格式（成功）：
 ```$xslt
 {
-    "success": true,
-    "message": null,
-    "data": null
+    "data": null,
+    "message": "成功",
+    "success": true
+}
+```
+* 返回格式（失败）：
+```$xslt
+{
+    "data": null,
+    "message": "失败[[登录子服务]邮箱已被注册]",
+    "success": false
 }
 ```
 
@@ -84,12 +110,20 @@ mobile:10086
 ```$xslt
 email:123@qq.com
 ```
-* 返回格式：
+* 返回格式（成功）：
 ```$xslt
 {
-    "success": true,
-    "message": null,
-    "data": null
+    "data": null,
+    "message": "成功[已经发送找回密码安全码到您邮箱。请在30分钟内重置密码]",
+    "success": true
+}
+```
+* 返回格式（失败）：
+```$xslt
+{
+    "data": null,
+    "message": "失败[[登录子服务]该邮箱尚未注册]",
+    "success": false
 }
 ```
 
@@ -102,16 +136,24 @@ secretKey:KEPC
 email:2922470093@qq.com
 password:1
 ```
-* 返回格式：
+* 返回格式（成功）：
 ```$xslt
 {
-    "success": true,
-    "message": null,
-    "data": null
+    "data": null,
+    "message": "成功",
+    "success": true
+}
+```
+* 返回格式（失败）：
+```$xslt
+{
+    "data": null,
+    "message": "失败[[登录子服务]安全码或邮箱不正确,请重新申请]",
+    "success": false
 }
 ```
 
-## 2. 监控任务服务
+## 2. 监控任务服务（接口未投入使用）
 ### 1.新增监控
 * url地址：/addMonitor
 * 请求方式：post
@@ -124,12 +166,20 @@ watchTime:10
 type:1
 warnMethod:1
 ```
-* 返回格式：
+* 返回格式（成功）：
 ```$xslt
 {
     "data": null,
     "message": "成功",
     "success": true
+}
+```
+* 返回格式（失败）：
+```$xslt
+{
+    "data": null,
+    "message": "失败[[登录子服务]邮箱已被注册]",
+    "success": false
 }
 ```
 
@@ -142,12 +192,20 @@ monitorId:73db27b5-1314-11e9-a14c-00163e0097c7
 state:1
 ```
 state：启用状态 0-禁用 1-启用
-* 返回格式：
+* 返回格式（成功）：
 ```$xslt
 {
     "data": null,
     "message": "成功",
     "success": true
+}
+```
+* 返回格式（失败）：
+```$xslt
+{
+    "data": null,
+    "message": "失败[[登录子服务]邮箱已被注册]",
+    "success": false
 }
 ```
 
@@ -164,13 +222,20 @@ watchTime:19
 type:1
 warnMethod:1
 ```
-state：启用状态 0-禁用 1-启用
-* 返回格式：
+* 返回格式（成功）：
 ```$xslt
 {
     "data": null,
     "message": "成功",
     "success": true
+}
+```
+* 返回格式（失败）：
+```$xslt
+{
+    "data": null,
+    "message": "失败[[登录子服务]邮箱已被注册]",
+    "success": false
 }
 ```
 
@@ -181,8 +246,7 @@ state：启用状态 0-禁用 1-启用
 ```$xslt
 userId:f6e51629-b2e0-4536-b2db-bdf98d97cc3d
 ```
-state：启用状态 0-禁用 1-启用
-* 返回格式：
+* 返回格式（成功）：
 ```$xslt
 {
     "data": [
@@ -213,5 +277,13 @@ state：启用状态 0-禁用 1-启用
     ],
     "message": "查询成功",
     "success": true
+}
+```
+* 返回格式（失败）：
+```$xslt
+{
+    "data": null,
+    "message": "失败[[登录子服务]邮箱已被注册]",
+    "success": false
 }
 ```
