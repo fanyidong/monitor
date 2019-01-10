@@ -67,7 +67,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>cn.fyd.monitorlogin.MonitorLoginApplication</mainClass>
+                    <mainClass>cn.fyd.monitor.MonitorApplication</mainClass>
                 </configuration>
                 <executions>
                     <execution>
