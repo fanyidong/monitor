@@ -40,36 +40,24 @@ public class JobController {
             return userRes.toString();
         }
         Response response = jobRemote.addMonitor(monitor);
-        if (response.isSuccess()) {
-            logger.info(ADD_MONITOR_SUCCESS);
-        }
         return response.toString();
     }
 
     @PostMapping("/closeMonitor")
     public String closeMonitor(String monitorId, Integer state, HttpServletRequest request) {
         Response response = jobRemote.closeMonitor(monitorId, state);
-        if (response.isSuccess()) {
-            logger.info(EDIT_MONITOR_SUCCESS);
-        }
         return response.toString();
     }
 
     @PostMapping("/editMonitor")
     public String editMonitor(Monitor monitor, HttpServletRequest request) {
         Response response = jobRemote.editMonitor(monitor);
-        if (response.isSuccess()) {
-            logger.info(EDIT_MONITOR_SUCCESS);
-        }
         return response.toString();
     }
 
     @PostMapping("/getMonitors")
     public String getMonitors(String userId, HttpServletRequest request) {
         Response<List<Monitor>> response = jobRemote.getMonitors(userId);
-        if (response.isSuccess()) {
-            logger.info(QUERY_SUCCESS);
-        }
         if (response.getData().size() == 0) {
             response.setMessage(RESPONSE_EMPTY);
         }
