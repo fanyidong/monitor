@@ -5,8 +5,8 @@ import cn.fyd.model.Monitor;
 import cn.fyd.model.User;
 import cn.fyd.monitor.remote.JobRemote;
 import cn.fyd.monitor.remote.LoginRemote;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,7 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
-import static cn.fyd.common.Constant.*;
+import static cn.fyd.common.Constant.RESPONSE_EMPTY;
+import static cn.fyd.common.Constant.USER_NOT_EXIST;
 
 /**
  * job子服务控制层
@@ -24,7 +25,7 @@ import static cn.fyd.common.Constant.*;
 @RestController
 public class JobController {
 
-    private static Logger logger = LogManager.getLogger(JobController.class);
+    private static Logger log = LoggerFactory.getLogger(JobController.class);
 
     @Autowired
     private JobRemote jobRemote;
