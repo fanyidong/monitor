@@ -87,7 +87,7 @@
         <repository>
             <id>monitor-utils-master</id>
             <name>utils</name>
-            <url>https://raw.github.com/fanyidong/monitor-utils/master</url>
+            <url>https://raw.github.com/fanyidong/monitor-utils/package</url>
             <snapshots>
                 <enabled>true</enabled>
                 <updatePolicy>always</updatePolicy>
