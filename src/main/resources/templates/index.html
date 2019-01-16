@@ -5,36 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="keywords" content="App Loction Form,Login Forms,Sign up Forms,Registration Forms,News latter Forms,Elements" />
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script type="application/x-javascript">
-    $(function(){
-        $('#loginButton').click(function(){
-            console.log("diaoyong")
-            login();
-        });
-    })
-    function getLoginParam() {
-        let account = document.getElementById("account").value();
-        let password = document.getElementById("password").value();
-        let data = {'account': account, 'password': password};
-        return data;
-    }
-
-    function login() {
-        $.ajax({
-            type: "POST",
-            url: "/login",
-            data: getLoginParam(),
-            dataType: "json",
-            success:function (data) {
-                if (data.success) {
-                    alert("success");
-                } else {
-                    alert("failed");
+    <!-- 引用jQuery -->
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript">
+        // 登录函数
+        function login() {
+            $.ajax({
+                type: "POST",
+                url: "/login",
+                data: $('#loginForm').serialize(),// 获取form表单中的数据
+                dataType: "json",// 预期服务器返回的数据类型
+                success:function (data) {
+                    if (data.success) {
+                        alert("success");
+                    } else {
+                        alert(data.message);
+                    }
                 }
-            }
-        });
-    }
+            });
+        }
     </script>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700,800' rel='stylesheet' type='text/css' />
 </head>
@@ -45,7 +34,8 @@
             <h2>欢迎来到 Monitor 服务监控平台</h2>
             <div class="line"><span></span></div>
             <div class="location"></div>
-            <form>
+            <!-- onsubmit属性可以取消input提交 -->
+            <form id="loginForm" onsubmit="return false" method="post">
                 <input type="text" class="text" name="account" id="account" />
                 <input type="password" name="password" id="password" />
                 <div class="submit">
