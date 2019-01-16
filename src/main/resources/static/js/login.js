@@ -7,8 +7,9 @@ function login() {
         dataType: "json",// 预期服务器返回的数据类型
         success:function (data) {
             if (data.success) {
-                alert("success");
+                //todo 登录成功转到主页
             } else {
+                // 登录失败提示
                 alert(data.message);
             }
         }
