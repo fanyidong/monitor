@@ -7,24 +7,7 @@
     <meta name="keywords" content="App Loction Form,Login Forms,Sign up Forms,Registration Forms,News latter Forms,Elements" />
     <!-- 引用jQuery -->
     <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script type="text/javascript">
-        // 登录函数
-        function login() {
-            $.ajax({
-                type: "POST",
-                url: "/login",
-                data: $('#loginForm').serialize(),// 获取form表单中的数据
-                dataType: "json",// 预期服务器返回的数据类型
-                success:function (data) {
-                    if (data.success) {
-                        alert("success");
-                    } else {
-                        alert(data.message);
-                    }
-                }
-            });
-        }
-    </script>
+    <script type="text/javascript" src="../js/login.js"  />
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700,800' rel='stylesheet' type='text/css' />
 </head>
 <body>
@@ -39,7 +22,7 @@
                 <input type="text" class="text" name="account" id="account" />
                 <input type="password" name="password" id="password" />
                 <div class="submit">
-                    <button id="loginButton" onclick="login()">登&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;录</button>
+                    <button id="loginButton" onclick="login()">登录</button>
                 </div>
                 <div class="clear"></div>
                 <div class="new">
