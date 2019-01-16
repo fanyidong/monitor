@@ -4,6 +4,12 @@ server:
 spring:
   application:
     name: monitor
+  # thymeleaf
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    # 开发阶段务必关闭缓存 (=false)
+    cache: false
 
 eureka:
   instance:
