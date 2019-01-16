@@ -1,0 +1,67 @@
+<html>
+<head>
+    <title>Monitor服务监控平台</title>
+    <link href="../css/style.css" rel='stylesheet' type='text/css' />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="App Loction Form,Login Forms,Sign up Forms,Registration Forms,News latter Forms,Elements" />
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script type="application/x-javascript">
+    $(function(){
+        $('#loginButton').click(function(){
+            console.log("diaoyong")
+            login();
+        });
+    })
+    function getLoginParam() {
+        let account = document.getElementById("account").value();
+        let password = document.getElementById("password").value();
+        let data = {'account': account, 'password': password};
+        return data;
+    }
+
+    function login() {
+        $.ajax({
+            type: "POST",
+            url: "/login",
+            data: getLoginParam(),
+            dataType: "json",
+            success:function (data) {
+                if (data.success) {
+                    alert("success");
+                } else {
+                    alert("failed");
+                }
+            }
+        });
+    }
+    </script>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700,800' rel='stylesheet' type='text/css' />
+</head>
+<body>
+	<h1></h1>
+	<div class="app-location">
+        <div class="app-login">
+            <h2>欢迎来到 Monitor 服务监控平台</h2>
+            <div class="line"><span></span></div>
+            <div class="location"></div>
+            <form>
+                <input type="text" class="text" name="account" id="account" />
+                <input type="password" name="password" id="password" />
+                <div class="submit">
+                    <button id="loginButton" onclick="login()">登&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;录</button>
+                </div>
+                <div class="clear"></div>
+                <div class="new">
+                    <h3><a href="#">注册</a></h3>
+                    <h4><a href="#">忘记密码</a></h4>
+                    <div class="clear"></div>
+                </div>
+            </form>
+	    </div>
+    </div>
+	<div class="copy-right">
+		<p>Copyright &copy; 2018 Monitor 服务监控平台 版权所有</p>
+	</div>
+</body>
+</html>
