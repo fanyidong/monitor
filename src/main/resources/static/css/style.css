@@ -73,7 +73,7 @@ form {
 .location img {
   margin: 2em 0;
 }
-.app-location input[type="text"],.app-location input[type="password"]{
+.app-location input[type="text"],.app-location input[type="password"], .app-location input[type="email"], .app-location input[type="number"]{
   width: 81.2%;
   padding: 1.1em 1em 1.1em 4em;
   color: #858282;
@@ -88,10 +88,19 @@ form {
   -moz-border-radius: 0.3em;
   -webkit-border-radius: 0.3em;
   margin:0.7em 0;
-   background: url("../images/icons.png") no-repeat 14px 16px #474a55;
+  }
+  /*图片*/
+  .app-location input[type="text"]{
+    background: url("../images/account.png") no-repeat 10px 13px #474a55;
   }
   .app-location input[type="password"]{
-      background: url("../images/icons.png") no-repeat 13px -61px #474a55;
+    background: url("../images/password.png") no-repeat 10px 13px #474a55;
+  }
+  .app-location input[type="email"]{
+    background: url("../images/email.png") no-repeat 10px 13px #474a55;
+  }
+  .app-location input[type="number"]{
+    background: url("../images/mobile.png") no-repeat 10px 13px #474a55;
   }
   .submit {
   margin: 1em 0;
@@ -156,7 +165,7 @@ input[type="submit"]:hover{
   .app-location{
     width:30%;
   }
-  .app-location input[type="text"],.app-location input[type="password"]{
+  .app-location input[type="text"],.app-location input[type="password"], .app-location input[type="email"], .app-location input[type="number"]{
     width: 82.2%;
   	
   }
@@ -165,7 +174,7 @@ input[type="submit"]:hover{
   .app-location{
   width:34%;
 }
-.app-location input[type="text"], .app-location input[type="password"] {
+.app-location input[type="text"], .app-location input[type="password"], .app-location input[type="email"], .app-location input[type="number"] {
   width: 82.7%;
   }
 .line span{
@@ -226,7 +235,7 @@ body h1 {
  .app-location {
   width: 69%;
 }
-.app-location input[type="text"], .app-location input[type="password"] {
+.app-location input[type="text"], .app-location input[type="password"], .app-location input[type="email"], .app-location input[type="number"] {
   width: 81%;
 }
 }
@@ -246,10 +255,11 @@ body h1 {
   width: 82%;
   margin: 0 auto;
 }
-.app-location input[type="text"], .app-location input[type="password"] {
+.app-location input[type="text"], .app-location input[type="password"], .app-location input[type="email"], .app-location input[type="number"] {
   width: 76.8%;
   margin: 0.4em 0;
 }
+
 }
 @media (max-width:320px){
   .app-location {
@@ -267,12 +277,6 @@ body h1 {
   width:68%;
   padding: 1em 1em 1em 4em;
   font-size: 15px;
-  background: url("../images/icons.png") no-repeat 14px 17px #474a55;
-  background-size: 11%;
-}
-.app-location input[type="password"] {
-  background: url("../images/icons.png") no-repeat 14px -41px #474a55;
-  background-size: 11%;
 }
 .app-location h2 {
   padding: 0.5em 0;
