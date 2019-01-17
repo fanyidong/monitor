@@ -10,7 +10,26 @@ function login() {
                 //todo 登录成功转到主页
             } else {
                 // 登录失败提示
-                alert(data.message);
+                console(data.message);
+            }
+        }
+    });
+}
+
+// 注册函数
+function regist() {
+    $.ajax({
+        type: "POST",
+        url: "/regist",
+        data: $('#registForm').serialize(),// 获取form表单中的数据
+        dataType: "json",// 预期服务器返回的数据类型
+        success:function (data) {
+            if (data.success) {
+                // 注册成功转到登录页面
+                window.location.href="www.baidu.com"; //在原有窗口打开
+            } else {
+                // 登录失败提示
+                console(data.message);
             }
         }
     });
