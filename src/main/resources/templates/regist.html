@@ -1,0 +1,37 @@
+<html>
+<head>
+    <title>Monitor服务监控平台</title>
+    <link href="../css/style.css" rel='stylesheet' type='text/css' />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="App Loction Form,Login Forms,Sign up Forms,Registration Forms,News latter Forms,Elements" />
+    <!-- 引用jQuery -->
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/login.js"  />
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700,800' rel='stylesheet' type='text/css' />
+</head>
+<body>
+	<h1></h1>
+	<div class="app-location">
+        <div class="app-login">
+            <h2>注册新用户</h2>
+            <div class="line"><span></span></div>
+            <div class="location"></div>
+            <!-- onsubmit属性可以取消input提交 -->
+            <form id="registForm" onsubmit="return false" method="post">
+                <input type="text" class="text" name="account" id="account" placeholder="请输入账号" />
+                <input type="password" name="password" id="password" placeholder="请输入密码" />
+                <input type="email" name="email" id="email" placeholder="请输入邮箱" />
+                <input type="number" name="mobile" id="mobile" placeholder="请输入手机号" />
+                <div class="location"></div>
+                <div class="submit">
+                    <button id="loginButton" onclick="regist()">注册</button>
+                </div>
+            </form>
+	    </div>
+    </div>
+	<div class="copy-right">
+		<p>Copyright &copy; 2018 Monitor 服务监控平台 版权所有</p>
+	</div>
+</body>
+</html>
