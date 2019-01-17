@@ -11,7 +11,7 @@ function login() {
                 window.location.href="main.do";
             } else {
                 // 登录失败提示
-                console(data.message);
+                console.log(data.message);
             }
         }
     });
@@ -29,8 +29,8 @@ function regist() {
                 // 注册成功转到登录页面
                 window.location.href="index.do"; //在原有窗口打开
             } else {
-                // 登录失败提示
-                console(data.message);
+                // 注册失败提示
+                console.log(data.message);
             }
         }
     });
