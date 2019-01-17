@@ -22,7 +22,7 @@ public class PageController {
     }
 
     @GetMapping("/main.do")
-    public String getDashBoard() {
+    public String getMainPage() {
         return "main";
     }
 }
