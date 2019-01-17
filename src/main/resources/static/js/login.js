@@ -26,7 +26,7 @@ function regist() {
         success:function (data) {
             if (data.success) {
                 // 注册成功转到登录页面
-                window.location.href="www.baidu.com"; //在原有窗口打开
+                window.location.href="index.do"; //在原有窗口打开
             } else {
                 // 登录失败提示
                 console(data.message);
