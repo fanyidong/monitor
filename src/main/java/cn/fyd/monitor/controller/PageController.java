@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class PageController {
 
-    @GetMapping("/index")
+    @GetMapping("/index.do")
     public String getIndex(String page) {
         return page;
     }
 
-    @GetMapping("/regist")
+    @GetMapping("/regist.do")
     public String getRegist(String page) {
         return page;
     }
