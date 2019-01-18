@@ -35,3 +35,24 @@ function regist() {
         }
     });
 }
+
+// 发送邮件表单函数
+function sendEmail() {
+    $.ajax({
+        type: "POST",
+        url: "/sendEmail",
+        data: $('#mailForm').serialize(),// 获取form表单中的数据
+        dataType: "json",// 预期服务器返回的数据类型
+        success:function (data) {
+            let showDiv = document.getElementById("sendSuccess");
+            if (showDiv) {
+                showDiv.innerText = data.message;
+            } else {
+                console.log("获取div异常");
+            }
+            if (showDiv.style.display === 'none') {
+                showDiv.style.display = 'block';
+            }
+        }
+    });
+}
