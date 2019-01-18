@@ -41,23 +41,32 @@
 					<form id="mailForm" class="fh5co-form animate-box" data-animate-effect="fadeInLeft"  onsubmit="return false">
 						<h2>忘记密码</h2>
 						<div class="form-group">
-							<div class="alert alert-success" role="alert" id="sendSuccess" style="display: none"></div>
+							<div class="alert alert-success" role="alert" id="responseMess" style="display: none"></div>
 						</div>
 						<div class="form-group">
 							<label for="email" class="sr-only">Email</label>
 							<input type="email" class="form-control" id="email" name="email" placeholder="请输入邮箱" autocomplete="off"/>
 						</div>
+						<div class="form-group" id="resetSecretKey" style="display: none">
+							<label for="secretKey" class="sr-only">安全码</label>
+							<input type="secretKey" class="form-control" id="secretKey" name="secretKey" placeholder="请输入安全码" autocomplete="off"/>
+						</div>
+						<div class="form-group" id="resetPassword" style="display: none">
+							<label for="password" class="sr-only">密码</label>
+							<input type="password" class="form-control" id="password" name="password" placeholder="请输入新密码" autocomplete="off"/>
+						</div>
 						<div class="form-group" style="margin-left: 10px">
 							<p><a href="/login.do">登 录</a> or <a href="/regist.do">注 册</a></p>
 						</div>
 						<div class="form-group">
-							<input type="submit" value="发送邮件" class="btn btn-primary" onclick="sendEmail()"/>
+							<input id="submitInput" type="submit" value="发送邮件" class="btn btn-primary" onclick="sendEmail()"/>
 						</div>
 					</form>
 					<!-- END Sign In Form -->
 				</div>
 			</div>
-			<div class="row" style="padding-top: 270px; clear: both;">
+			<!-- padding-top发送邮件270px -->
+			<div class="row" style="padding-top: 100px; clear: both;">
 				<div class="col-md-12 text-center">
 					<p>
 						<small>Copyright &copy; 2018 Monitor 服务监控平台 版权所有</small>
