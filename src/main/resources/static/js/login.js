@@ -44,18 +44,8 @@ function sendEmail() {
         data: $('#mailForm').serialize(),// 获取form表单中的数据
         dataType: "json",// 预期服务器返回的数据类型
         success:function (data) {
-            // 获取显示返回信息的div
-            let responseMessDiv = document.getElementById("responseMess");
-            // 如果该div存在，修改其内容为返回中的message字段
-            if (responseMessDiv) {
-                responseMessDiv.innerText = data.message;
-            } else {
-                console.log("获取div异常");
-            }
-            // 设置该div为可见
-            if (responseMessDiv.style.display === 'none') {
-                responseMessDiv.style.display = 'block';
-            }
+            // 信息提醒div可见
+            showMess();
             // 如果发送邮件成功，显示修改密码需要的div
             if (data.success) {
                 // 邮件输入框
@@ -66,11 +56,6 @@ function sendEmail() {
                 let resetSecretKeyDiv = document.getElementById("resetSecretKey");
                 // 重置密码div
                 let resetPasswordDiv = document.getElementById("resetPassword");
-                // 提交按钮
-                let submitInput = document.getElementById("submitInput");
-                // 改变提交按钮的值为修改密码
-                submitInput.setAttribute("value", "修改密码");
-                submitInput.setAttribute("onclick", "reset()");
                 // 如果获取div成功，设置div为可见
                 if (resetPasswordDiv && resetSecretKeyDiv) {
                     if (resetSecretKeyDiv.style.display === 'none') {
@@ -80,9 +65,62 @@ function sendEmail() {
                         resetPasswordDiv.style.display = 'block';
                     }
                 } else {
-                    console.log("获取div异常");
+                    console.log("获取控件异常");
                 }
+                // 修改密码按钮
+                let submitResetInput = document.getElementById("submitResetInput");
+                // 发送邮件按钮
+                let submitInput = document.getElementById("submitInput");
+                if (submitResetInput) {
+                    // 发送邮件按钮为不可见
+                    if (submitInput.style.display === 'block') {
+                        submitInput.style.display = 'none';
+                    }
+                    // 设置修改密码按钮为可见
+                    if (submitResetInput.style.display === 'none') {
+                        submitResetInput.style.display = 'block';
+                    }
+                } else {
+                    console.log("获取控件异常");
+                }
+
             }
         }
     });
+}
+
+// 修改密码函数
+function resetPass() {
+    $.ajax({
+        type: "POST",
+        url: "/reset",
+        data: $('#mailForm').serialize(),// 获取form表单中的数据
+        dataType: "json",// 预期服务器返回的数据类型
+        success:function (data) {
+            if (data.success) {
+                // 注册成功转到登录页面
+                window.location.href="login.do"; //在原有窗口打开
+            } else {
+                // 修改密码失败提示
+                showMess();
+                console.log(data.message);
+            }
+        }
+    });
+}
+
+// 修改原先不可见的信息提醒div内容并使其可见
+function showMess() {
+    // 获取显示返回信息的div
+    let responseMessDiv = document.getElementById("responseMess");
+    // 如果该div存在，修改其内容为返回中的message字段
+    if (responseMessDiv) {
+        responseMessDiv.innerText = data.message;
+    } else {
+        console.log("获取div异常");
+    }
+    // 设置该div为可见
+    if (responseMessDiv.style.display === 'none') {
+        responseMessDiv.style.display = 'block';
+    }
 }
