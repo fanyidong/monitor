@@ -21,6 +21,11 @@ public class PageController {
         return "regist";
     }
 
+    @GetMapping("/forgot.do")
+    public String getForgot() {
+        return "forgot";
+    }
+
     @GetMapping("/main.do")
     public String getMainPage() {
         return "main";
