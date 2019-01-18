@@ -45,7 +45,18 @@ function sendEmail() {
         dataType: "json",// 预期服务器返回的数据类型
         success:function (data) {
             // 信息提醒div可见
-            showMess();
+            // 获取显示返回信息的div
+            let responseMessDiv = document.getElementById("responseMess");
+            // 如果该div存在，修改其内容为返回中的message字段
+            if (responseMessDiv) {
+                responseMessDiv.innerText = data.message;
+            } else {
+                console.log("获取div异常");
+            }
+            // 设置该div为可见
+            if (responseMessDiv.style.display === 'none') {
+                responseMessDiv.style.display = 'block';
+            }
             // 如果发送邮件成功，显示修改密码需要的div
             if (data.success) {
                 // 邮件输入框
@@ -102,25 +113,20 @@ function resetPass() {
                 window.location.href="login.do"; //在原有窗口打开
             } else {
                 // 修改密码失败提示
-                showMess();
+                // 获取显示返回信息的div
+                let responseMessDiv = document.getElementById("responseMess");
+                // 如果该div存在，修改其内容为返回中的message字段
+                if (responseMessDiv) {
+                    responseMessDiv.innerText = data.message;
+                } else {
+                    console.log("获取div异常");
+                }
+                // 设置该div为可见
+                if (responseMessDiv.style.display === 'none') {
+                    responseMessDiv.style.display = 'block';
+                }
                 console.log(data.message);
             }
         }
     });
-}
-
-// 修改原先不可见的信息提醒div内容并使其可见
-function showMess() {
-    // 获取显示返回信息的div
-    let responseMessDiv = document.getElementById("responseMess");
-    // 如果该div存在，修改其内容为返回中的message字段
-    if (responseMessDiv) {
-        responseMessDiv.innerText = data.message;
-    } else {
-        console.log("获取div异常");
-    }
-    // 设置该div为可见
-    if (responseMessDiv.style.display === 'none') {
-        responseMessDiv.style.display = 'block';
-    }
 }
