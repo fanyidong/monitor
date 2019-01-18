@@ -16,7 +16,7 @@ public class DefaultPage extends WebMvcConfigurerAdapter {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         // 设置默认页面为index
-        registry.addViewController("/").setViewName("index");
+        registry.addViewController("/").setViewName("login");
         // 设置ViewController的优先级
         registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
         super.addViewControllers(registry);

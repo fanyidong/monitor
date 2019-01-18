@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class PageController {
 
-    @GetMapping("/index.do")
+    @GetMapping("/login.do")
     public String getIndex() {
-        return "index";
+        return "login";
     }
 
     @GetMapping("/regist.do")
