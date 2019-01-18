@@ -20,7 +20,7 @@ password:1
 ```$xslt
 {
 	"data": null,
-	"message": "失败[[登录子服务]密码错误]",
+	"message": "密码错误",
 	"success": false
 }
 ```
@@ -47,7 +47,7 @@ mobile:10086
 ```$xslt
 {
     "data": null,
-    "message": "失败[[登录子服务]邮箱已被注册]",
+    "message": "邮箱已被注册",
     "success": false
 }
 ```
@@ -71,7 +71,7 @@ userId:f6e51629-b2e0-4536-b2db-bdf98d97cc3d
 ```$xslt
 {
     "data": null,
-    "message": "失败[操作非本人数据，请重试]",
+    "message": "操作非本人数据，请重试",
     "success": false
 }
 ```
@@ -98,7 +98,7 @@ mobile:10086
 ```$xslt
 {
     "data": null,
-    "message": "失败[[登录子服务]邮箱已被注册]",
+    "message": "邮箱已被注册",
     "success": false
 }
 ```
@@ -114,7 +114,7 @@ email:123@qq.com
 ```$xslt
 {
     "data": null,
-    "message": "成功[已经发送找回密码安全码到您邮箱。请在30分钟内重置密码]",
+    "message": "已经发送找回密码安全码到您邮箱。请在30分钟内重置密码",
     "success": true
 }
 ```
@@ -122,7 +122,7 @@ email:123@qq.com
 ```$xslt
 {
     "data": null,
-    "message": "失败[[登录子服务]该邮箱尚未注册]",
+    "message": "该邮箱尚未注册",
     "success": false
 }
 ```
@@ -148,7 +148,7 @@ password:1
 ```$xslt
 {
     "data": null,
-    "message": "失败[[登录子服务]安全码或邮箱不正确,请重新申请]",
+    "message": "安全码或邮箱不正确,请重新申请",
     "success": false
 }
 ```
@@ -178,7 +178,7 @@ warnMethod:1
 ```$xslt
 {
     "data": null,
-    "message": "失败[[登录子服务]邮箱已被注册]",
+    "message": "邮箱已被注册",
     "success": false
 }
 ```
@@ -204,7 +204,7 @@ state：启用状态 0-禁用 1-启用
 ```$xslt
 {
     "data": null,
-    "message": "失败[[登录子服务]邮箱已被注册]",
+    "message": "邮箱已被注册",
     "success": false
 }
 ```
@@ -234,7 +234,7 @@ warnMethod:1
 ```$xslt
 {
     "data": null,
-    "message": "失败[[登录子服务]邮箱已被注册]",
+    "message": "邮箱已被注册",
     "success": false
 }
 ```
@@ -283,7 +283,7 @@ userId:f6e51629-b2e0-4536-b2db-bdf98d97cc3d
 ```$xslt
 {
     "data": null,
-    "message": "失败[[登录子服务]邮箱已被注册]",
+    "message": "邮箱已被注册",
     "success": false
 }
 ```
