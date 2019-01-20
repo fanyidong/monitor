@@ -11,6 +11,7 @@ function login() {
                 window.location.href="main.do";
             } else {
                 // 登录失败提示
+                alert(data.message)
                 console.log(data.message);
             }
         }
@@ -30,6 +31,7 @@ function regist() {
                 window.location.href="login.do"; //在原有窗口打开
             } else {
                 // 注册失败提示
+                alert(data.message)
                 console.log(data.message);
             }
         }
@@ -95,6 +97,8 @@ function sendEmail() {
                     console.log("获取控件异常");
                 }
 
+            } else {
+                alert(data.message)
             }
         }
     });
@@ -125,6 +129,7 @@ function resetPass() {
                 if (responseMessDiv.style.display === 'none') {
                     responseMessDiv.style.display = 'block';
                 }
+                alert(data.message)
                 console.log(data.message);
             }
         }
