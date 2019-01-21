@@ -11,7 +11,7 @@ function login() {
                 window.location.href="main.do";
             } else {
                 // 登录失败提示
-                alert(data.message)
+                alert(data.message);
                 console.log(data.message);
             }
         }
@@ -31,7 +31,7 @@ function regist() {
                 window.location.href="login.do"; //在原有窗口打开
             } else {
                 // 注册失败提示
-                alert(data.message)
+                alert(data.message);
                 console.log(data.message);
             }
         }
@@ -98,7 +98,7 @@ function sendEmail() {
                 }
 
             } else {
-                alert(data.message)
+                alert(data.message);
             }
         }
     });
@@ -129,7 +129,29 @@ function resetPass() {
                 if (responseMessDiv.style.display === 'none') {
                     responseMessDiv.style.display = 'block';
                 }
-                alert(data.message)
+                alert(data.message);
+                console.log(data.message);
+            }
+        }
+    });
+}
+
+// 获取用户个人信息
+
+// 编辑用户信息函数
+function edit() {
+    $.ajax({
+        type: "POST",
+        url: "/edit",
+        data: $('#editForm').serialize(),// 获取form表单中的数据
+        dataType: "json",// 预期服务器返回的数据类型
+        success:function (data) {
+            if (data.success) {
+                // 注册成功转到登录页面
+                window.location.href="user.do"; //在原有窗口打开
+            } else {
+                // 修改信息失败提示
+                alert(data.message);
                 console.log(data.message);
             }
         }
