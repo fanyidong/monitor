@@ -11,9 +11,17 @@ password:1
 * 返回格式（成功）：
 ```$xslt
 {
-	"data": null,
-	"message": "成功",
-	"success": true
+    "data": {
+        "account": "dd",
+        "createTime": "2018-12-27 16:48:22",
+        "email": "12351232@qq.com",
+        "mobile": 10086,
+        "password": null,
+        "updateTime": "2019-01-09 14:10:32",
+        "userId": "f6e51629-b2e0-4536-b2db-bdf98d97cc3d"
+    },
+    "message": "成功",
+    "success": true
 }
 ```
 * 返回格式（失败）：
