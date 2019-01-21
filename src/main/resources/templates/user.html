@@ -34,6 +34,10 @@
 </head>
 
 <body class="">
+    <script type = "text/javascript">
+        // 从cookie中获取userId
+        getUserInfo("3cd08494-fdb3-11e8-85c0-00163e0097c7");
+    </script>
     <div class="wrapper ">
         <div class="sidebar" data-color="orange">
             <!--左上角logo-->
@@ -153,7 +157,15 @@
                                         </div>
                                         <div class="col-md-2 pr-1">
                                             <div class="form-group">
-                                                <input type="text" class="form-control" style="display: none" id="userid" name="userid"/>
+                                                <input type="text" class="form-control" style="display: none" id="userId" name="userId"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-3 pr-1">
+                                            <div class="form-group">
+                                                <label>邮箱</label>
+                                                <input type="text" class="form-control" placeholder="请编辑您的邮箱" id="email" name="email"/>
                                             </div>
                                         </div>
                                     </div>
@@ -162,14 +174,6 @@
                                             <div class="form-group">
                                                 <label>手机</label>
                                                 <input type="text" class="form-control" placeholder="请编辑您的手机" id="mobile" name="mobile"/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-4 pr-1">
-                                            <div class="form-group">
-                                                <label>邮箱</label>
-                                                <input type="text" class="form-control" placeholder="请编辑您的邮箱" id="email" name="email"/>
                                             </div>
                                         </div>
                                     </div>
@@ -205,11 +209,11 @@
                                 <div class="author">
                                     <a href="#">
                                         <img class="avatar border-gray" src="../img/me.jpg" alt="..." />
-                                        <h5 class="title">root</h5>
+                                        <h5 class="title" id="besideEditFormAccount"></h5>
                                     </a>
                                 </div>
                                 <br/>
-                                <p class="description text-center">成为本站会员已经 123 天</p>
+                                <p class="description text-center" id="besideEditFormUsingData"></p>
                             </div>
                         </div>
                     </div>

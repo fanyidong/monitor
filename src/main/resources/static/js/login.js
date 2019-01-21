@@ -12,7 +12,6 @@ function login() {
             } else {
                 // 登录失败提示
                 alert(data.message);
-                console.log(data.message);
             }
         }
     });
@@ -32,7 +31,6 @@ function regist() {
             } else {
                 // 注册失败提示
                 alert(data.message);
-                console.log(data.message);
             }
         }
     });
@@ -130,13 +128,45 @@ function resetPass() {
                     responseMessDiv.style.display = 'block';
                 }
                 alert(data.message);
-                console.log(data.message);
             }
         }
     });
 }
 
 // 获取用户个人信息
+function getUserInfo(userId) {
+    $.ajax({
+        type: "POST",
+        url: "/userInfo",
+        data: {"userId":userId},
+        dataType: "json",// 预期服务器返回的数据类型
+        success:function (data) {
+            if (data.success) {
+                // 填充表单
+                let res = data.data;
+                for(let k in res){
+                    let type = $("[name="+k+"]").attr("type");
+                    $("textarea[name="+k+"]").val(res[k]);
+                    if (type!=undefined&&type!=null) {
+                        if(type=="text"){
+                            if(res[k]!=""&&res[k]!=null){
+                                $("[name="+k+"]").val(res[k]);
+                            }
+                        }
+                    }
+                }
+                // 填充右边头像的两条记录
+                let besideEditFormAccount = document.getElementById("besideEditFormAccount");
+                besideEditFormAccount.innerHTML(res.account);
+                let besideEditFormUsingData = document.getElementById("besideEditFormUsingData");
+                besideEditFormUsingData.innerHTML("成为本站会员已经 "+ + " 天");
+            } else {
+                // 获取个人信息失败提示
+                alert(data.message);
+            }
+        }
+    });
+}
 
 // 编辑用户信息函数
 function edit() {
@@ -152,7 +182,6 @@ function edit() {
             } else {
                 // 修改信息失败提示
                 alert(data.message);
-                console.log(data.message);
             }
         }
     });
