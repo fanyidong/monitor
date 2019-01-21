@@ -30,4 +30,9 @@ public class PageController {
     public String getMainPage() {
         return "main";
     }
+
+    @GetMapping("/user.do")
+    public String getUserPage() {
+        return "user";
+    }
 }
