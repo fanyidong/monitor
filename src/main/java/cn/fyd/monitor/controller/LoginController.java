@@ -49,7 +49,10 @@ public class LoginController {
         HttpSession session = request.getSession();
         session.setAttribute(USER_BEAN, user);
         log.info(USER_BEAN + "已存入Session*****sessionId:" + session.getId() + user.toString());
-        res.setData(null);
+        // 将用户密码置空
+        user.setPassword(null);
+        // 登录成功后返回用户信息
+        res.setData(user);
         return res.toString();
     }
 
