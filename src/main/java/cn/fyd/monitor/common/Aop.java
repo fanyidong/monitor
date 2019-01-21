@@ -6,6 +6,7 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -55,6 +56,7 @@ public class Aop {
         }
         // 获取参数列表中的第一个参数
         Object firstParam = args[0];
+        // 获取参数中的userId
         String userId = null;
         // 给userId赋值
         if (firstParam instanceof String) {
@@ -65,6 +67,10 @@ public class Aop {
             userId = ((User) firstParam).getUserId();
         } else {
             // 待补充
+        }
+        // 参数为空
+        if (StringUtils.isEmpty(userId)) {
+            return Response.failed(EMPTY_PARAMS).toString();
         }
         // 验证是否是登录用户操作本人数据
         if (!userBean.getUserId().equals(userId)) {
