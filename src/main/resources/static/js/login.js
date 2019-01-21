@@ -157,9 +157,9 @@ function getUserInfo(userId) {
                 }
                 // 填充右边头像的两条记录
                 let besideEditFormAccount = document.getElementById("besideEditFormAccount");
-                besideEditFormAccount.innerHTML(res.account);
+                besideEditFormAccount.innerHTML = res.account;
                 let besideEditFormUsingData = document.getElementById("besideEditFormUsingData");
-                besideEditFormUsingData.innerHTML("成为本站会员已经 "+ + " 天");
+                besideEditFormUsingData.innerHTML = "成为本站会员已经 " + usingData(res.createTime) + " 天";
             } else {
                 // 获取个人信息失败提示
                 alert(data.message);
@@ -185,4 +185,14 @@ function edit() {
             }
         }
     });
+}
+
+// 注册几天
+function usingData(olderData) {
+    // 获取最新时间
+    let today = new Date();
+    // 时间差的毫秒数
+    let compareDays = today.getTime() - new Date(olderData).getTime();
+    //计算出相差天数
+    return Math.floor(compareDays /(24*3600*1000))
 }
