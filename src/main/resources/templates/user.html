@@ -16,6 +16,21 @@
     <link href="../css/now-ui-dashboard.css?v=1.0.1" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="../css/demo.css" rel="stylesheet" />
+    <!--   Core JS Files   -->
+    <script src="../js/core/jquery.min.js"></script>
+    <script src="../js/core/popper.min.js"></script>
+    <script src="../js/core/bootstrap.min.js"></script>
+    <script src="../js/plugins/perfect-scrollbar.jquery.min.js"></script>
+    <!-- Chart JS -->
+    <script src="../js/plugins/chartjs.min.js"></script>
+    <!--  Notifications Plugin    -->
+    <script src="../js/plugins/bootstrap-notify.js"></script>
+    <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="../js/now-ui-dashboard.js?v=1.0.1"></script>
+    <!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
+    <script src="../js/demo.js"></script>
+    <!-- Login JS -->
+    <script src="../js/login.js"></script>
 </head>
 
 <body class="">
@@ -127,12 +142,18 @@
                                 <h5 class="title">个人信息</h5>
                             </div>
                             <div class="card-body">
-                                <form>
+                                <!-- onsubmit属性可以取消input提交 -->
+                                <form id="editForm" class="fh5co-form animate-box" data-animate-effect="fadeInLeft" onsubmit="return false">
                                     <div class="row">
                                         <div class="col-md-2 pr-1">
                                             <div class="form-group">
                                                 <label>账号</label>
-                                                <input type="text" class="form-control" placeholder="请编辑您的账号"/>
+                                                <input type="text" class="form-control" placeholder="请编辑您的账号" id="account" name="account"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 pr-1">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" style="display: none" id="userid" name="userid"/>
                                             </div>
                                         </div>
                                     </div>
@@ -140,7 +161,7 @@
                                         <div class="col-md-3 pr-1">
                                             <div class="form-group">
                                                 <label>手机</label>
-                                                <input type="text" class="form-control" placeholder="请编辑您的手机" />
+                                                <input type="text" class="form-control" placeholder="请编辑您的手机" id="mobile" name="mobile"/>
                                             </div>
                                         </div>
                                     </div>
@@ -148,14 +169,22 @@
                                         <div class="col-md-4 pr-1">
                                             <div class="form-group">
                                                 <label>邮箱</label>
-                                                <input type="text" class="form-control" placeholder="请编辑您的邮箱"/>
+                                                <input type="text" class="form-control" placeholder="请编辑您的邮箱" id="email" name="email"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-1 pr-1">
+                                            <div class="form-group">
+                                                <br/>
+                                                <input type="submit" class="form-control" value="确认" onclick="edit()"/>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                                <br/><hr/>
+                                                <hr/>
                                                 <label>注意</label><br/>
                                                 <label>1、账号即为登录账号.</label><br/>
                                                 <label>2、一个邮箱只能绑定一个用户.</label><br/>
@@ -180,7 +209,7 @@
                                     </a>
                                 </div>
                                 <br/>
-                                <p class="description text-center">成为本站会员 123 天</p>
+                                <p class="description text-center">成为本站会员已经 123 天</p>
                             </div>
                         </div>
                     </div>
@@ -194,20 +223,4 @@
         </div>
     </div>
 </body>
-<!--   Core JS Files   -->
-<script src="../js/core/jquery.min.js"></script>
-<script src="../js/core/popper.min.js"></script>
-<script src="../js/core/bootstrap.min.js"></script>
-<script src="../js/plugins/perfect-scrollbar.jquery.min.js"></script>
-<!--  Google Maps Plugin    -->
-
-<!-- Chart JS -->
-<script src="../js/plugins/chartjs.min.js"></script>
-<!--  Notifications Plugin    -->
-<script src="../js/plugins/bootstrap-notify.js"></script>
-<!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
-<script src="../js/now-ui-dashboard.js?v=1.0.1"></script>
-<!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
-<script src="../js/demo.js"></script>
-
 </html>
