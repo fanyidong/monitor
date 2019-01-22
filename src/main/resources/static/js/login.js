@@ -187,7 +187,7 @@ function edit() {
     });
 }
 
-// 注册几天
+// 计算注册几天
 function usingData(olderData) {
     // 获取最新时间
     let today = new Date();

@@ -35,4 +35,9 @@ public class PageController {
     public String getUserPage() {
         return "user";
     }
+
+    @GetMapping("/manage.do")
+    public String getManage() {
+        return "manage";
+    }
 }
