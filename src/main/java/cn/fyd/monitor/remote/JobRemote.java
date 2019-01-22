@@ -2,13 +2,12 @@ package cn.fyd.monitor.remote;
 
 import cn.fyd.common.Response;
 import cn.fyd.model.Monitor;
+import com.github.pagehelper.PageInfo;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.List;
 
 /**
  * 调用远程服务(job)接口类
@@ -47,8 +46,10 @@ public interface JobRemote {
     /**
      * 开启/关闭 监控
      * @param userId 用户id
+     * @param pageNum 页码
+     * @param pageSize 每页数目
      * @return cn.fyd.common.Response 公用返回类
      */
     @PostMapping("/getMonitors")
-    Response<List<Monitor>> getMonitors(@RequestParam("userId") String userId);
+    Response<PageInfo<Monitor>> getMonitors(@RequestParam("userId") String userId, @RequestParam("pageNum") Integer pageNum, @RequestParam("pageSize") Integer pageSize);
 }

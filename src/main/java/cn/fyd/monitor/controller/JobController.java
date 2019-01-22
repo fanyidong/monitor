@@ -5,6 +5,7 @@ import cn.fyd.model.Monitor;
 import cn.fyd.model.User;
 import cn.fyd.monitor.remote.JobRemote;
 import cn.fyd.monitor.remote.LoginRemote;
+import com.github.pagehelper.PageInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
 import static cn.fyd.common.Constant.RESPONSE_EMPTY;
 import static cn.fyd.common.Constant.USER_NOT_EXIST;
@@ -57,9 +57,9 @@ public class JobController {
     }
 
     @PostMapping("/getMonitors")
-    public String getMonitors(String userId, HttpServletRequest request) {
-        Response<List<Monitor>> response = jobRemote.getMonitors(userId);
-        if (response.getData().size() == 0) {
+    public String getMonitors(String userId, Integer pageNum, Integer pageSize, HttpServletRequest request) {
+        Response<PageInfo<Monitor>> response = jobRemote.getMonitors(userId, pageNum, pageSize);
+        if (response.getData().getList().size() == 0) {
             response.setMessage(RESPONSE_EMPTY);
         }
         return response.toString();
