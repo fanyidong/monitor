@@ -15,23 +15,43 @@
     <link href="../css/bootstrap.min.css" rel="stylesheet" />
     <link href="../css/now-ui-dashboard.css?v=1.0.1" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
-    <link href="../demo/demo.css" rel="stylesheet" />
+    <link href="../css/demo.css" rel="stylesheet" />
+    <!--   Core JS Files   -->
+    <script src="../js/core/jquery.min.js"></script>
+    <script src="../js/core/popper.min.js"></script>
+    <script src="../js/core/bootstrap.min.js"></script>
+    <script src="../js/plugins/perfect-scrollbar.jquery.min.js"></script>
+    <!-- Chart JS -->
+    <script src="../js/plugins/chartjs.min.js"></script>
+    <!--  Notifications Plugin    -->
+    <script src="../js/plugins/bootstrap-notify.js"></script>
+    <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="../js/now-ui-dashboard.js?v=1.0.1"></script>
+    <!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
+    <script src="../js/demo.js"></script>
+    <!-- Login JS -->
+    <script src="../js/login.js"></script>
+    <script src="../js/job.js"></script>
 </head>
 
 <body class="">
+    <script type = "text/javascript">
+        // 获取页数
+        let pageNum = 1;
+        // 从cookie中获取userId
+        getMonitors("f6e51629-b2e0-4536-b2db-bdf98d97cc3d", pageNum);
+    </script>
     <div class="wrapper ">
+        <!-- 可以改变左侧导航栏颜色: data-color="blue | green | orange | red | yellow"-->
         <div class="sidebar" data-color="orange">
-            <!--
-        Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
-    -->
+            <!--左上角logo-->
             <div class="logo">
-                <a href="#" class="simple-text logo-mini">
-                    CT
-                </a>
-                <a href="#" class="simple-text logo-normal">
-                    Creative Tim
-                </a>
+                <!-- 监控logo，点击返回main.do -->
+                <a href="/main.do" class="simple-text logo-mini"><img src="../img/monitor.png" /></a>
+                <!-- 显示账号，点击打开用户信息页 -->
+                <a href="/main.do" class="simple-text logo-normal">root</a>
             </div>
+            <!--左侧导航栏-->
             <div class="sidebar-wrapper">
                 <ul class="nav">
                     <li>
@@ -137,7 +157,7 @@
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table">
-                                        <thead class=" text-primary">
+                                        <thead class="text-primary">
                                             <th>监控任务名</th>
                                             <th>监控地址</th>
                                             <th>监控频率(分钟)</th>
@@ -181,20 +201,4 @@
         </div>
     </div>
 </body>
-<!--   Core JS Files   -->
-<script src="../js/core/jquery.min.js"></script>
-<script src="../js/core/popper.min.js"></script>
-<script src="../js/core/bootstrap.min.js"></script>
-<script src="../js/plugins/perfect-scrollbar.jquery.min.js"></script>
-<!-- Chart JS -->
-<script src="../js/plugins/chartjs.min.js"></script>
-<!--  Notifications Plugin    -->
-<script src="../js/plugins/bootstrap-notify.js"></script>
-<!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
-<script src="../js/now-ui-dashboard.js?v=1.0.1"></script>
-<!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
-<script src="../demo/demo.js"></script>
-<!-- Login JS -->
-<script src="../js/login.js"></script>
-
 </html>
