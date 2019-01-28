@@ -5,20 +5,20 @@
 * 请求方式：post
 * 参数：
 ```$xslt
-account:dd
+account:root
 password:1
 ```  
 * 返回格式（成功）：
 ```$xslt
 {
     "data": {
-        "account": "dd",
-        "createTime": "2018-12-27 16:48:22",
-        "email": "12351232@qq.com",
-        "mobile": 10086,
+        "account": "root",
+        "createTime": "2018-11-24 15:28:45",
+        "email": "2922470093@qq.com",
+        "mobile": 10087,
         "password": null,
-        "updateTime": "2019-01-09 14:10:32",
-        "userId": "f6e51629-b2e0-4536-b2db-bdf98d97cc3d"
+        "updateTime": "2019-01-22 14:21:17",
+        "userId": "3cd08494-fdb3-11e8-85c0-00163e0097c7"
     },
     "message": "成功",
     "success": true
@@ -70,7 +70,15 @@ userId:f6e51629-b2e0-4536-b2db-bdf98d97cc3d
 * 返回格式（成功）：
 ```$xslt
 {
-    "data": null,
+    "data": {
+        "account": "root",
+        "createTime": "2018-11-24 15:28:45",
+        "email": "2922470093@qq.com",
+        "mobile": 10087,
+        "password": "c4ca4238a0b923820dcc509a6f75849b",
+        "updateTime": "2019-01-22 14:21:17",
+        "userId": "3cd08494-fdb3-11e8-85c0-00163e0097c7"
+    },
     "message": "成功",
     "success": true
 }
