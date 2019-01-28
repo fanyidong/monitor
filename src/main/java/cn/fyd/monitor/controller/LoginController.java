@@ -32,7 +32,7 @@ public class LoginController {
     @Autowired
     LoginRemote loginRemote;
 
-    @Log(name = "login", type = "query")
+    @Log(name = "login")
     @PostMapping("/login")
     public String login(String account, String password, HttpServletRequest request) {
         // 从子服务获取返回内容
@@ -59,7 +59,7 @@ public class LoginController {
         return res.toString();
     }
 
-    @Log(name = "userInfo", type = "query")
+    @Log(name = "userInfo")
     @IsLogin
     @PostMapping("/userInfo")
     public String userInfo(String userId, HttpServletRequest request) {
@@ -70,14 +70,14 @@ public class LoginController {
         return res.toString();
     }
 
-    @Log(name = "regist", type = "add")
+    @Log(name = "regist")
     @PostMapping("/regist")
     public String regist(User newUser) {
         Response res = loginRemote.regist(newUser);
         return res.toString();
     }
 
-    @Log(name = "edit", type = "modify")
+    @Log(name = "edit")
     @IsLogin
     @PostMapping("/edit")
     public String edit(User newUser, HttpServletRequest request) {
@@ -89,13 +89,13 @@ public class LoginController {
         return res.toString();
     }
 
-    @Log(name = "sendEmail", type = "query")
+    @Log(name = "sendEmail")
     @PostMapping("/sendEmail")
     public String sendEmail(String email) {
         return loginRemote.sendEmail(email).toString();
     }
 
-    @Log(name = "reset", type = "modify")
+    @Log(name = "reset")
     @PostMapping("/reset")
     public String reset(ResetDto dto) {
         return loginRemote.reset(dto).toString();
