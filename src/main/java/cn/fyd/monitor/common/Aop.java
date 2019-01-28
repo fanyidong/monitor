@@ -1,10 +1,14 @@
 package cn.fyd.monitor.common;
 
+import cn.fyd.annotation.Log;
 import cn.fyd.common.Response;
 import cn.fyd.model.User;
+import com.alibaba.fastjson.JSON;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
@@ -22,6 +26,8 @@ import static cn.fyd.common.Constant.*;
 @Aspect
 @Component
 public class Aop {
+
+    private static Logger logger = LoggerFactory.getLogger(Aop.class);
 
     /**
      * 使用IsLogin注解需要做的处理
@@ -77,5 +83,64 @@ public class Aop {
             return Response.failed(WRONG_USER).toString();
         }
         return pjp.proceed(args);
+    }
+
+    /**
+     * 输出日志aop
+     * @param pjp
+     * @param log
+     * @return
+     * @throws Throwable
+     */
+    @Around(value = "@annotation(log)")
+    public Object outPutLogBeforeDoMethods(ProceedingJoinPoint pjp, Log log) throws Throwable {
+        StringBuffer outPutString = new StringBuffer();
+        outPutString.append("日志信息").append("\n");
+        // 接口类型
+        outPutString.append("Kind:\t").append(pjp.getKind()).append("\n");
+        // 接口名
+        outPutString.append("Target\t").append(pjp.getTarget().toString()).append("\n");
+        // 获取传入参数
+        Object[] os = pjp.getArgs();
+        outPutString.append("Args:").append("\n");
+        // 存储传入参数
+        StringBuffer inputParams = new StringBuffer();
+        // 遍历参数数组
+        for (int i = 0; i < os.length; i++) {
+            outPutString.append("\t==>input[").append(i).append("]:\t").append(os[i] == null ? "" : os[i].toString()).append("\n");
+            // 统计请求参数 防止查询后的结果过长 在业务执行前统计
+            try {
+                // 跳过Mock测试框架中Json解析MockRequest的步骤
+                String typeName = os[i].getClass().getName();
+                if (typeName.contains("Mock")) {
+                    inputParams.append(os[i].toString() + ",");
+                } else {
+                    inputParams.append(JSON.toJSONString(os[i]) + ",");
+                }
+            } catch (Exception e) {
+                try {
+                    inputParams.append(os[i].toString() + ",");
+                } catch (Exception e1) {
+                    continue;
+                }
+                continue;
+            }
+        }
+        outPutString.append("Signature:\t").append(pjp.getSignature()).append("\n");
+        outPutString.append("SoruceLocation:\t").append(pjp.getSourceLocation()).append("\n");
+        outPutString.append("StaticPart:\t").append(pjp.getStaticPart()).append("\n");
+        Object retVal = pjp.proceed();
+        String retValStr = null;
+        if (retVal instanceof String){
+            retValStr = (String) retVal;
+        } else if (retVal != null){
+            retValStr = JSON.toJSONString(new Object[]{retVal});
+        }
+        if (retValStr != null) {
+            outPutString.append("Result:\t").append(retValStr).append("\n");
+        }
+        outPutString.append("----------分割线----------").append("\n");
+        logger.info(outPutString.toString());
+        return retVal;
     }
 }
