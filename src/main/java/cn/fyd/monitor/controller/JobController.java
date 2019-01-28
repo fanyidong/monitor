@@ -1,5 +1,6 @@
 package cn.fyd.monitor.controller;
 
+import cn.fyd.annotation.Log;
 import cn.fyd.common.Response;
 import cn.fyd.model.Monitor;
 import cn.fyd.model.User;
@@ -32,6 +33,7 @@ public class JobController {
     @Autowired
     private LoginRemote loginRemote;
 
+    @Log(name = "addMonitor", type = "modify")
     @PostMapping("/addMonitor")
     public String addMonitor(Monitor monitor, HttpServletRequest request) {
         // 根据userId查询该用户是否存在
@@ -44,18 +46,21 @@ public class JobController {
         return response.toString();
     }
 
+    @Log(name = "closeMonitor", type = "modify")
     @PostMapping("/closeMonitor")
     public String closeMonitor(String monitorId, Integer state, HttpServletRequest request) {
         Response response = jobRemote.closeMonitor(monitorId, state);
         return response.toString();
     }
 
+    @Log(name = "editMonitor", type = "modify")
     @PostMapping("/editMonitor")
     public String editMonitor(Monitor monitor, HttpServletRequest request) {
         Response response = jobRemote.editMonitor(monitor);
         return response.toString();
     }
 
+    @Log(name = "getMonitors", type = "query")
     @PostMapping("/getMonitors")
     public String getMonitors(String userId, Integer pageNum, Integer pageSize, HttpServletRequest request) {
         Response<PageInfo<Monitor>> response = jobRemote.getMonitors(userId, pageNum, pageSize);

@@ -1,6 +1,7 @@
 package cn.fyd.monitor.controller;
 
 import cn.fyd.annotation.IsLogin;
+import cn.fyd.annotation.Log;
 import cn.fyd.common.Response;
 import cn.fyd.model.ResetDto;
 import cn.fyd.model.User;
@@ -31,6 +32,7 @@ public class LoginController {
     @Autowired
     LoginRemote loginRemote;
 
+    @Log(name = "login", type = "query")
     @PostMapping("/login")
     public String login(String account, String password, HttpServletRequest request) {
         // 从子服务获取返回内容
@@ -49,7 +51,7 @@ public class LoginController {
         // 将用户信息存入session
         HttpSession session = request.getSession();
         session.setAttribute(USER_BEAN, user);
-        log.info(USER_BEAN + "已存入Session*****sessionId:" + session.getId() + user.toString());
+        log.info(USER_BEAN + "sessionId ==> " + session.getId() + " ==> " + user.toString());
         // 将用户密码置空
         user.setPassword(null);
         // 登录成功后返回用户信息
@@ -57,9 +59,10 @@ public class LoginController {
         return res.toString();
     }
 
+    @Log(name = "userInfo", type = "query")
     @IsLogin
     @PostMapping("/userInfo")
-    public String login(String userId, HttpServletRequest request) {
+    public String userInfo(String userId, HttpServletRequest request) {
         Response res = loginRemote.userInfo(userId);
         if (res.getData() == null) {
             return Response.failed(RESPONSE_EMPTY).toString();
@@ -67,12 +70,14 @@ public class LoginController {
         return res.toString();
     }
 
+    @Log(name = "regist", type = "add")
     @PostMapping("/regist")
     public String regist(User newUser) {
         Response res = loginRemote.regist(newUser);
         return res.toString();
     }
 
+    @Log(name = "edit", type = "modify")
     @IsLogin
     @PostMapping("/edit")
     public String edit(User newUser, HttpServletRequest request) {
@@ -84,11 +89,13 @@ public class LoginController {
         return res.toString();
     }
 
+    @Log(name = "sendEmail", type = "query")
     @PostMapping("/sendEmail")
     public String sendEmail(String email) {
         return loginRemote.sendEmail(email).toString();
     }
 
+    @Log(name = "reset", type = "modify")
     @PostMapping("/reset")
     public String reset(ResetDto dto) {
         return loginRemote.reset(dto).toString();
