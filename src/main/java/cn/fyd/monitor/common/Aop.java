@@ -94,37 +94,23 @@ public class Aop {
      */
     @Around(value = "@annotation(log)")
     public Object outPutLogBeforeDoMethods(ProceedingJoinPoint pjp, Log log) throws Throwable {
+        // 输出流StringBuffer线程安全
         StringBuffer outPutString = new StringBuffer();
-        outPutString.append("日志信息").append("\n");
+        outPutString.append("输出接口调用的日志信息 ==> ").append("\n");
         // 接口类型
         outPutString.append("Kind:\t").append(pjp.getKind()).append("\n");
         // 接口名
         outPutString.append("Target\t").append(pjp.getTarget().toString()).append("\n");
         // 获取传入参数
-        Object[] os = pjp.getArgs();
+        Object[] args = pjp.getArgs();
         outPutString.append("Args:").append("\n");
         // 存储传入参数
         StringBuffer inputParams = new StringBuffer();
         // 遍历参数数组
-        for (int i = 0; i < os.length; i++) {
-            outPutString.append("\t==>input[").append(i).append("]:\t").append(os[i] == null ? "" : os[i].toString()).append("\n");
+        for (int i = 0; i < args.length; i++) {
+            outPutString.append("\t==>input[").append(i).append("]:\t").append(args[i] == null ? "" : args[i].toString()).append("\n");
             // 统计请求参数 防止查询后的结果过长 在业务执行前统计
-            try {
-                // 跳过Mock测试框架中Json解析MockRequest的步骤
-                String typeName = os[i].getClass().getName();
-                if (typeName.contains("Mock")) {
-                    inputParams.append(os[i].toString() + ",");
-                } else {
-                    inputParams.append(JSON.toJSONString(os[i]) + ",");
-                }
-            } catch (Exception e) {
-                try {
-                    inputParams.append(os[i].toString() + ",");
-                } catch (Exception e1) {
-                    continue;
-                }
-                continue;
-            }
+            inputParams.append(JSON.toJSONString(args[i]) + ",");
         }
         outPutString.append("Signature:\t").append(pjp.getSignature()).append("\n");
         outPutString.append("SoruceLocation:\t").append(pjp.getSourceLocation()).append("\n");
