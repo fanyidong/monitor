@@ -1,5 +1,6 @@
 // 获取任务列表
-function getMonitors(userId, pageNum) {
+function getMonitors(userId, pageNum, whereDo) {
+    var res = null;
     $.ajax({
         type: "POST",
         url: "/getMonitors",
@@ -7,13 +8,17 @@ function getMonitors(userId, pageNum) {
         dataType: "json",// 预期服务器返回的数据类型
         success:function (data) {
             if (data.success) {
-                alert(data.message)
+                res = data.data;
             } else {
                 // 修改信息失败提示
                 alert(data.message);
             }
         }
     });
+    //main页面调用
+    if (whereDo === 1) {
+
+    }
 }
 
 // 任务列表字段转换

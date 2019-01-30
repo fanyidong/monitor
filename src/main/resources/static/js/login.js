@@ -8,6 +8,8 @@ function login() {
         success:function (data) {
             if (data.success) {
                 // 登录成功转到主页
+                setCookie("account", data.data.account);
+                setCookie("userId", data.data.userId);
                 window.location.href="main.do";
             } else {
                 // 登录失败提示
@@ -195,4 +197,36 @@ function usingData(olderData) {
     let compareDays = today.getTime() - new Date(olderData).getTime();
     //计算出相差天数
     return Math.floor(compareDays /(24*3600*1000))
+}
+
+//写cookies，一个小时过期
+function setCookie(c_name,value) {
+    var expiredays = 60 * 60 * 1000;
+    var exdate=new Date();
+    exdate.setDate(exdate.getDate()+expiredays);
+    document.cookie=c_name+ "=" +escape(value)+ ((expiredays==null) ? "" : ";expires="+exdate.toGMTString());
+}
+
+//读取cookies
+function getCookie(c_name) {
+    if (document.cookie.length>0) {
+        var c_start=document.cookie.indexOf(c_name + "=");
+        if (c_start!=-1) {
+            c_start=c_start + c_name.length+1;
+            var c_end=document.cookie.indexOf(";",c_start);
+            if (c_end==-1) c_end=document.cookie.length;
+            return unescape(document.cookie.substring(c_start,c_end));
+        }
+    }
+    return "";
+}
+
+//删除cookies,删除时只能删除对应路径下的cookie，不指定路径，默认删除的是页面所对应的路径下的cookie。
+function delCookie(name) {
+    var exp = new Date();
+    exp.setTime(exp.getTime() - 60 * 60 * 1000);
+    var cval = getCookie(name);
+    if (cval != null) {
+        document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString() + ";path=/";
+    }
 }

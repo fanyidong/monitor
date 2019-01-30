@@ -29,14 +29,16 @@
     <script src="../js/now-ui-dashboard.js?v=1.0.1"></script>
     <!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
     <script src="../js/demo.js"></script>
-    <!-- Login JS -->
+    <!-- 自定义JS -->
     <script src="../js/login.js"></script>
+    <script src="../js/job.js"></script>
 </head>
 
 <body class="">
     <script type = "text/javascript">
         // 从cookie中获取userId
-        getUserInfo("3cd08494-fdb3-11e8-85c0-00163e0097c7");
+        var userId = getCookie("userId");
+        getUserInfo(userId);
     </script>
     <div class="wrapper ">
         <div class="sidebar" data-color="orange">
