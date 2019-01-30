@@ -30,14 +30,14 @@ function createShowingTable(res, whereDo){
     //此处需要让其动态的生成一个table并填充数据
     var tableStr = "<table class='table'>";
     // whereDo=1表示main页面，其他表示manage页面
-    if (whereDo === 1) {
+    if (whereDo == 1) {
         tableStr = tableStr + "<thead class='text-primary'><th>监控任务名</th><th>监控地址</th><th>监控频率(分钟)</th><th>警告方式</th><th>状态</th>";
     } else {
         tableStr = tableStr + "<thead class='text-primary'><th>监控任务名</th><th>监控地址</th><th>监控频率(分钟)</th><th>监控类型</th><th>警告方式</th><th>状态</th><th>操作</th>";
     }
     // 若返回结果不为空则填充数据
     if (dataArray != null && len > 0) {
-        if (whereDo === 1) {
+        if (whereDo == 1) {
             for (var i = 0; i < len; i++) {
                 tableStr = tableStr + "<tbody><tr>"
                     + "<td>" + dataArray[i].name + "</td>"
@@ -63,7 +63,7 @@ function createShowingTable(res, whereDo){
     }
     tableStr = tableStr + "</table>";
     //将动态生成的table添加的事先隐藏的div中.
-    if (whereDo === 1) {
+    if (whereDo == 1) {
         $("#mainPageManageList").html(tableStr);
     } else {
         $("#managePageManageList").html(tableStr);
