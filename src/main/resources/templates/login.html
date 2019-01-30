@@ -34,6 +34,13 @@
 	<script src="../js/login.js"></script>
 	</head>
 	<body class="style-2">
+		<script type = "text/javascript">
+			// 验证是否已经登录
+            var userId = getCookie("userId");
+            if (userId) {
+                window.location.href="main.do";
+			}
+		</script>
 		<div class="container">
 			<div class="row" style="padding-top: 120px">
 				<div class="col-md-4">
