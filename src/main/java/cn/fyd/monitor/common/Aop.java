@@ -110,7 +110,22 @@ public class Aop {
         for (int i = 0; i < args.length; i++) {
             outPutString.append("\t==>input[").append(i).append("]:\t").append(args[i] == null ? "" : args[i].toString()).append("\n");
             // 统计请求参数 防止查询后的结果过长 在业务执行前统计
-            inputParams.append(JSON.toJSONString(args[i]) + ",");
+            try {
+                // 跳过Mock测试框架中Json解析MockRequest的步骤
+                String typeName = args[i].getClass().getName();
+                if (typeName.contains("Mock")) {
+                    inputParams.append(args[i].toString() + ",");
+                } else {
+                    inputParams.append(JSON.toJSONString(args[i]) + ",");
+                }
+            } catch (Exception e) {
+                try {
+                    inputParams.append(args[i].toString() + ",");
+                } catch (Exception e1) {
+                    continue;
+                }
+                continue;
+            }
         }
         outPutString.append("Signature:\t").append(pjp.getSignature()).append("\n");
         outPutString.append("SoruceLocation:\t").append(pjp.getSourceLocation()).append("\n");
