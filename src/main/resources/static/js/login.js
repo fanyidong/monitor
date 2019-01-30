@@ -230,3 +230,10 @@ function delCookie(name) {
         document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString() + ";path=/";
     }
 }
+
+// 退出登录
+function logout() {
+    delCookie("userId");
+    delCookie("account");
+    alert("退出登录成功");
+}
