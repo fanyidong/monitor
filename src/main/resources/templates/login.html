@@ -37,7 +37,7 @@
 		<script type = "text/javascript">
 			// 验证是否已经登录
             var userId = getCookie("userId");
-            if (userId) {
+            if (!userId) {
                 window.location.href="main.do";
 			}
 		</script>
