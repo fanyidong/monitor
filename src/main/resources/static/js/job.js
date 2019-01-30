@@ -8,32 +8,95 @@ function getMonitors(userId, pageNum, whereDo) {
         dataType: "json",// 预期服务器返回的数据类型
         success:function (data) {
             if (data.success) {
-                res = data.data;
+                // 调用创建table方法
+                createShowingTable(data, whereDo);
             } else {
                 // 修改信息失败提示
                 alert(data.message);
             }
         }
     });
-    //main页面调用
-    if (whereDo === 1) {
+}
 
+function createShowingTable(res, whereDo){
+    //获取后台传过来的jsonData,并进行解析
+    var dataArray = null;
+    var len = 0;
+    if (res.success && res.data.list != null) {
+        //获取后台传过来的jsonData,并进行解析
+        dataArray = res.data.list;
+        len = dataArray.length;
+    }
+    //此处需要让其动态的生成一个table并填充数据
+    var tableStr = "<table class='table'>";
+    // whereDo=1表示main页面，其他表示manage页面
+    if (whereDo === 1) {
+        tableStr = tableStr + "<thead class='text-primary'><th>监控任务名</th><th>监控地址</th><th>监控频率(分钟)</th><th>警告方式</th><th>状态</th>";
+    } else {
+        tableStr = tableStr + "<thead class='text-primary'><th>监控任务名</th><th>监控地址</th><th>监控频率(分钟)</th><th>监控类型</th><th>警告方式</th><th>状态</th><th>操作</th>";
+    }
+    // 若返回结果不为空则填充数据
+    if (dataArray != null && len > 0) {
+        if (whereDo === 1) {
+            for (var i = 0; i < len; i++) {
+                tableStr = tableStr + "<tbody><tr>"
+                    + "<td>" + dataArray[i].name + "</td>"
+                    + "<td>" + dataArray[i].url + "</td>"
+                    + "<td>" + dataArray[i].watchTime + "</td>"
+                    + "<td>" + transformWarnMethod(dataArray[i].warnMethod) + "</td>"
+                    + "<td>" + transformState(dataArray[i].state) + "</td>"
+                    + "</tr></tbody>";
+            }
+        } else {
+            for (var i = 0; i < len; i++) {
+                tableStr = tableStr + "<tbody><tr>"
+                    + "<td>" + dataArray[i].name + "</td>"
+                    + "<td>" + dataArray[i].url + "</td>"
+                    + "<td>" + dataArray[i].watchTime + "</td>"
+                    + "<td>" + transformType(dataArray[i].type) + "</td>"
+                    + "<td>" + transformWarnMethod(dataArray[i].warnMethod) + "</td>"
+                    + "<td>" + transformState(dataArray[i].state) + "</td>"
+                    + "<td>" + dataArray[i].watchTime + "</td>"
+                    + "</tr></tbody>";
+            }
+        }
+    }
+    tableStr = tableStr + "</table>";
+    //将动态生成的table添加的事先隐藏的div中.
+    if (whereDo === 1) {
+        $("#mainPageManageList").html(tableStr);
+    } else {
+        $("#managePageManageList").html(tableStr);
+    }
+
+}
+
+
+// 警告方式（1邮件 2手机）字段转换
+function transformWarnMethod(number) {
+    if (number===1) {
+        return "邮件";
+    } else if (number===2) {
+        return "手机"
     }
 }
 
-// 任务列表字段转换
-function transformFields(field) {
-    if (field==="name") {
-        return "监控项目名称";
-    } else if (field==="url") {
-        return "监控地址"
-    } else if (field==="watchTime") {
-        return "监控频率(分钟)";
-    } else if (field==="type") {
-        return "监控类型";
-    } else if (field==="warnMethod") {
-        return "警告方式";
-    } else if (field==="state") {
-        return "状态";
+// 启用状态（0禁用 1启用）字段转换
+function transformState(number) {
+    if (number===1) {
+        return "启用";
+    } else if (number===0) {
+        return "禁用"
+    }
+}
+
+// 监控类型（1网站 2接口 3服务）字段转换
+function transformType(number) {
+    if (number===1) {
+        return "网站";
+    } else if (number===2) {
+        return "接口"
+    } else if (number===3) {
+        return "服务"
     }
 }

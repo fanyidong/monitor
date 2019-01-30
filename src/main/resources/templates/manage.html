@@ -38,8 +38,9 @@
     <script type = "text/javascript">
         // 获取页数
         let pageNum = 1;
+        var userId = getCookie("userId");
         // 从cookie中获取userId
-        getMonitors("f6e51629-b2e0-4536-b2db-bdf98d97cc3d", pageNum);
+        getMonitors(userId, pageNum, 2);
     </script>
     <div class="wrapper ">
         <!-- 可以改变左侧导航栏颜色: data-color="blue | green | orange | red | yellow"-->
@@ -155,38 +156,7 @@
                                 <h4 class="card-title">任务列表</h4>
                             </div>
                             <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead class="text-primary">
-                                            <th>监控任务名</th>
-                                            <th>监控地址</th>
-                                            <th>监控频率(分钟)</th>
-                                            <th>监控类型</th>
-                                            <th>警告方式</th>
-                                            <th>状态</th>
-                                            <th>操作</th>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>测试1</td>
-                                                <td>www.baidu.com</td>
-                                                <td>10</td>
-                                                <td>网站</td>
-                                                <td>邮件</td>
-                                                <td>开启</td>
-                                                <td>开启、删除</td>
-                                            </tr>
-                                            <tr>
-                                                <td>测试1</td>
-                                                <td>www.sian.com</td>
-                                                <td>13</td>
-                                                <td>网站</td>
-                                                <td>短信</td>
-                                                <td>关闭</td>
-                                                <td>开启、删除</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                <div class="table-responsive" id="managePageManageList">
                                 </div>
                             </div>
                         </div>

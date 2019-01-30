@@ -45,6 +45,7 @@
     <script type = "text/javascript">
         // 从cookie中获取data
         var account = getCookie("account");
+        var userId = getCookie("userId");
         if (!account) {
             alert("用户未登录，请重新登录");
             window.location.href="login.do";
@@ -224,35 +225,10 @@
                         <div class="card">
                             <div class="card-header">
                                 <!--<h5 class="card-category">创建新的监控任务</h5>-->
-                                <h4 class="card-title"><a href="" style="color: black">任务管理</a></h4>
+                                <h4 class="card-title"><a href="/manage.do" style="color: black">任务管理</a></h4>
                             </div>
                             <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead class="text-primary">
-                                            <th>监控任务名</th>
-                                            <th>监控地址</th>
-                                            <th>监控频率(分钟)</th>
-                                            <th>通知方式</th>
-                                            <th>状态</th>
-                                        </thead>
-                                        <tbody>
-                                            <!--<tr>-->
-                                                <!--<td>测试1</td>-->
-                                                <!--<td>www.baidu.com</td>-->
-                                                <!--<td>10</td>-->
-                                                <!--<td>邮件</td>-->
-                                                <!--<td>开启</td>-->
-                                            <!--</tr>-->
-                                            <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                <div class="table-responsive" id="mainPageManageList">
                                 </div>
                             </div>
                         </div>
@@ -270,6 +246,7 @@
         if (account) {
             document.getElementById("mainPageUserName").innerText = account;
         }
+        getMonitors(userId, 1, 1);
     </script>
 </body>
 
