@@ -1,5 +1,5 @@
 # monitor——主服务(http://127.0.0.1:8000)
-## 1. 登录服务（已全部更新）
+## 1. 登录服务
 ### 1. 登录
 * url地址：/login
 * 请求方式：post
@@ -65,7 +65,7 @@ mobile:10086
 * 请求方式：post
 * 参数：
 ```$xslt
-userId:f6e51629-b2e0-4536-b2db-bdf98d97cc3d
+userId:0b646c1e-2433-11e9-9e5f-00163e0097c7
 ```
 * 返回格式（成功）：
 ```$xslt
@@ -97,7 +97,7 @@ userId:f6e51629-b2e0-4536-b2db-bdf98d97cc3d
 * 请求方式：post
 * 参数：
 ```$xslt
-userId:f6e51629-b2e0-4536-b2db-bdf98d97cc3d
+userId:0b646c1e-2433-11e9-9e5f-00163e0097c7
 account:dd
 email:1234@qq.com
 mobile:10086
@@ -169,13 +169,13 @@ password:1
 }
 ```
 
-## 2. 监控任务服务（接口未投入使用）
+## 2. 监控任务服务
 ### 1.新增监控
 * url地址：/addMonitor
 * 请求方式：post
 * 参数：
 ```$xslt
-userId:f6e51629-b2e0-4536-b2db-bdf98d97cc3d
+userId:0b646c1e-2433-11e9-9e5f-00163e0097c7
 name:监控项目6
 url:www.baidu.com
 watchTime:10
@@ -231,7 +231,7 @@ state：启用状态 0-禁用 1-启用
 * 参数：
 ```$xslt
 monitorId:2aff34b7-1316-11e9-8f76-00163e0097c7
-userId:f6e51629-b2e0-4536-b2db-bdf98d97cc3d
+userId:0b646c1e-2433-11e9-9e5f-00163e0097c7
 name:项目1
 url:www.baidu.com
 watchTime:19
@@ -260,38 +260,63 @@ warnMethod:1
 * 请求方式：post
 * 参数：
 ```$xslt
-userId:f6e51629-b2e0-4536-b2db-bdf98d97cc3d
+userId:0b646c1e-2433-11e9-9e5f-00163e0097c7
+pageNum:1
+pageSize:10
 ```
 * 返回格式（成功）：
 ```$xslt
 {
-    "data": [
-        {
-            "createTime": "2019-01-08 15:22:34",
-            "monitorId": "2aff34b7-1316-11e9-8f76-00163e0097c7",
-            "name": "项目1",
-            "state": 0,
-            "type": 1,
-            "updateTime": "2019-01-09 15:38:41",
-            "url": "www.baidu.com",
-            "userId": "f6e51629-b2e0-4536-b2db-bdf98d97cc3d",
-            "warnMethod": 1,
-            "watchTime": 19
-        },
-        {
-            "createTime": "2019-01-09 14:52:58",
-            "monitorId": "330ff54f-13db-11e9-8f76-00163e0097c7",
-            "name": "监控项目1",
-            "state": 1,
-            "type": 1,
-            "updateTime": "2019-01-09 14:52:58",
-            "url": "www.baidu.com",
-            "userId": "f6e51629-b2e0-4536-b2db-bdf98d97cc3d",
-            "warnMethod": 1,
-            "watchTime": 10
-        }
-    ],
-    "message": "查询成功",
+    "data": {
+        "endRow": 2,
+        "firstPage": 1,
+        "hasNextPage": false,
+        "hasPreviousPage": false,
+        "isFirstPage": true,
+        "isLastPage": true,
+        "lastPage": 1,
+        "list": [
+            {
+                "createTime": "2019-01-30 15:09:18",
+                "monitorId": "2372d193-245a-11e9-9e5f-00163e0097c6",
+                "name": "第二次监控",
+                "state": 1,
+                "type": 1,
+                "updateTime": "2019-01-30 15:09:23",
+                "url": "www.qq.com",
+                "userId": "0b646c1e-2433-11e9-9e5f-00163e0097c7",
+                "warnMethod": 2,
+                "watchTime": 10
+            },
+            {
+                "createTime": "2019-01-22 14:41:57",
+                "monitorId": "2372d193-245a-11e9-9e5f-00163e0097c7",
+                "name": "第一次监控",
+                "state": 1,
+                "type": 1,
+                "updateTime": "2019-01-30 14:41:57",
+                "url": "www.baidu.com",
+                "userId": "0b646c1e-2433-11e9-9e5f-00163e0097c7",
+                "warnMethod": 1,
+                "watchTime": 1
+            }
+        ],
+        "navigateFirstPage": 1,
+        "navigateLastPage": 1,
+        "navigatePages": 8,
+        "navigatepageNums": [
+            1
+        ],
+        "nextPage": 0,
+        "pageNum": 1,
+        "pageSize": 5,
+        "pages": 1,
+        "prePage": 0,
+        "size": 2,
+        "startRow": 1,
+        "total": 2
+    },
+    "message": "成功",
     "success": true
 }
 ```
