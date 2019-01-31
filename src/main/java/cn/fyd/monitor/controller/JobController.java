@@ -69,4 +69,11 @@ public class JobController {
         }
         return response.toString();
     }
+
+    @Log(name = "delMonitor")
+    @PostMapping("/delMonitor")
+    public String delMonitor(String monitorId, HttpServletRequest request) {
+        Response response = jobRemote.delMonitor(monitorId);
+        return response.toString();
+    }
 }

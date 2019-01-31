@@ -328,3 +328,19 @@ pageSize:10
     "success": false
 }
 ```
+
+### 4.查询监控
+* url地址：/delMonitor
+* 请求方式：post
+* 参数：
+```$xslt
+monitorId:2372d193-245a-11e9-9e5f-00163e0097c6
+```
+* 返回格式（成功）：
+```$xslt
+{
+	"data": null,
+	"message": "成功",
+	"success": true
+}
+```

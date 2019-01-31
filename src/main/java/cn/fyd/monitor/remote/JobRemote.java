@@ -52,4 +52,12 @@ public interface JobRemote {
      */
     @PostMapping("/getMonitors")
     Response<PageInfo<Monitor>> getMonitors(@RequestParam("userId") String userId, @RequestParam("pageNum") Integer pageNum, @RequestParam("pageSize") Integer pageSize);
+
+    /**
+     * 删除监控任务
+     * @param monitorId 监控任务id
+     * @return cn.fyd.common.Response 公用返回类
+     */
+    @PostMapping("/delMonitor")
+    Response delMonitor(@RequestParam("monitorId") String monitorId);
 }
