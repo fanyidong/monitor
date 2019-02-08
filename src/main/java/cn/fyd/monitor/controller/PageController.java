@@ -40,4 +40,9 @@ public class PageController {
     public String getManage() {
         return "manage";
     }
+
+    @GetMapping("/apply.do")
+    public String getApply() {
+        return "apply";
+    }
 }
