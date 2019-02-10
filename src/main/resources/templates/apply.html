@@ -91,11 +91,6 @@
                             <i class="now-ui-icons text_caps-small"></i><p>Typography</p>
                         </a>
                     </li>
-                    <li class="active">
-                        <a href="/apply.do">
-                            <i class="now-ui-icons arrows-1_cloud-download-93"></i><p>创建任务</p>
-                        </a>
-                    </li>
                 </ul>
             </div>
         </div>
@@ -111,7 +106,6 @@
                                 <span class="navbar-toggler-bar bar3"></span>
                             </button>
                         </div>
-                        <a class="navbar-brand">创建新的监控任务</a>
                     </div>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -140,9 +134,84 @@
             <div class="content">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="card ">
-                            <div class="card-body ">
-                                <div id="map" class="map"></div>
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="title">创建新的监控任务</h5>
+                            </div>
+                            <div class="card-body">
+                                <form>
+                                    <div class="row">
+                                        <div class="col-md-3 pr-1">
+                                            <div class="form-group">
+                                                <label>监控任务名称</label>
+                                                <input type="text" class="form-control" placeholder="如监控服务器" id="name" name="name"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-2 pr-1">
+                                            <div class="form-group">
+                                                <label>监控类型</label>
+                                                <select class="form-control" id="type" name="type">
+                                                    <option value ="1">普通网站</option>
+                                                    <option value ="2">服务</option>
+                                                    <option value="3">API</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 pr-1">
+                                            <div class="form-group">
+                                                <label>监控地址</label>
+                                                <input type="text" class="form-control" placeholder="如www.baidu.com" id="url" name="url"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-1 pr-1">
+                                            <div class="form-group">
+                                                <label>警告类型</label>
+                                                <select class="form-control" id="warnMethod" name="warnMethod">
+                                                    <option value ="1">邮箱</option>
+                                                    <option value ="2">手机</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 pr-1">
+                                            <div class="form-group">
+                                                <label>监控频率(分钟)</label>
+                                                <input type="number" class="form-control" placeholder="请输入数字" id="watchTime" name="watchTime"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4 pr-1">
+                                            <div class="form-group">
+                                                <label>City</label>
+                                                <input type="text" class="form-control" placeholder="City" value="Mike"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 px-1">
+                                            <div class="form-group">
+                                                <label>Country</label>
+                                                <input type="text" class="form-control" placeholder="Country" value="Andrew"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 pl-1">
+                                            <div class="form-group">
+                                                <label>Postal Code</label>
+                                                <input type="number" class="form-control" placeholder="ZIP Code"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>About Me</label>
+                                                <textarea rows="4" cols="80" class="form-control" placeholder="Here can be your description" value="Mike">Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
                                 <a href="#" class="btn btn-round btn-primary">确认</a>
                                 <a href="#" class="btn btn-round btn-default disabled">重置</a>
                             </div>
