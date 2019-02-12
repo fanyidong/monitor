@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author fanyidong
  * @date Created in 2019-01-09
  */
-@FeignClient("${microService.job}")
+@FeignClient("${microService.login}")
 @Service
 public interface JobRemote {
 
