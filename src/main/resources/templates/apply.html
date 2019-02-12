@@ -38,8 +38,8 @@
 <body class="">
     <script type = "text/javascript">
         // 从cookie中获取data
-        var account = getCookie("account");
-        if (!account) {
+        var userId = getCookie("userId");
+        if (!userId) {
             alert("用户未登录，请重新登录");
             window.location.href="login.do";
         }
@@ -62,21 +62,6 @@
                         </a>
                     </li>
                     <li>
-                        <a href="../examples/icons.html">
-                            <i class="now-ui-icons education_atom"></i><p>Icons</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="../examples/map.html">
-                            <i class="now-ui-icons location_map-big"></i><p>Maps</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="../notifications.html">
-                            <i class="now-ui-icons ui-1_bell-53"></i><p>Notifications</p>
-                        </a>
-                    </li>
-                    <li>
                         <a href="/user.do">
                             <i class="now-ui-icons users_single-02"></i><p>个人信息</p>
                         </a>
@@ -84,11 +69,6 @@
                     <li>
                         <a href="/manage.do">
                             <i class="now-ui-icons design_bullet-list-67"></i><p>任务管理</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="../examples/typography.html">
-                            <i class="now-ui-icons text_caps-small"></i><p>Typography</p>
                         </a>
                     </li>
                 </ul>
@@ -139,12 +119,13 @@
                                 <h5 class="title">创建新的监控任务</h5>
                             </div>
                             <div class="card-body">
-                                <form>
+                                <form id="applyPageAddMonitorForm" data-animate-effect="fadeInLeft" onsubmit="return false">
                                     <div class="row">
                                         <div class="col-md-3 pr-1">
                                             <div class="form-group">
                                                 <label>监控任务名称</label>
                                                 <input type="text" class="form-control" placeholder="如监控服务器" id="name" name="name"/>
+                                                <input type="hidden" class="form-control" id="userId" name="userId"/>
                                             </div>
                                         </div>
                                     </div>
@@ -184,36 +165,13 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-4 pr-1">
+                                        <div class="col-md-2 pr-1">
                                             <div class="form-group">
-                                                <label>City</label>
-                                                <input type="text" class="form-control" placeholder="City" value="Mike"/>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4 px-1">
-                                            <div class="form-group">
-                                                <label>Country</label>
-                                                <input type="text" class="form-control" placeholder="Country" value="Andrew"/>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4 pl-1">
-                                            <div class="form-group">
-                                                <label>Postal Code</label>
-                                                <input type="number" class="form-control" placeholder="ZIP Code"/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label>About Me</label>
-                                                <textarea rows="4" cols="80" class="form-control" placeholder="Here can be your description" value="Mike">Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</textarea>
+                                                <input type="submit" class="btn btn-round btn-primary" value="确认" onclick="addMonitor()"/>
                                             </div>
                                         </div>
                                     </div>
                                 </form>
-                                <a href="#" class="btn btn-round btn-primary">确认</a>
-                                <a href="#" class="btn btn-round btn-default disabled">重置</a>
                             </div>
                         </div>
                     </div>
@@ -227,8 +185,8 @@
         </div>
     </div>
     <script type = "text/javascript">
-        if (account) {
-            document.getElementById("mainPageUserName").innerText = account;
+        if (userId) {
+            document.getElementById("userId").value = userId;
         }
     </script>
 </body>

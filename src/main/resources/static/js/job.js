@@ -196,3 +196,22 @@ function transformStateReverse(number) {
         return 0;
     }
 }
+
+// 增加监控任务
+function addMonitor() {
+    $.ajax({
+        type: "POST",
+        url: "/addMonitor",
+        data: $('#applyPageAddMonitorForm').serialize(),// 获取form表单中的数据
+        dataType: "json",// 预期服务器返回的数据类型
+        success:function (data) {
+            if (data.success) {
+                // 注册成功转到登录页面
+                window.location.href="manage.do"; //在原有窗口打开
+            } else {
+                // 修改信息失败提示
+                alert(data.message);
+            }
+        }
+    });
+}
