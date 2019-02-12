@@ -45,4 +45,9 @@ public class PageController {
     public String getApply() {
         return "apply";
     }
+
+    @GetMapping("/edit.do")
+    public String getEdit() {
+        return "edit";
+    }
 }

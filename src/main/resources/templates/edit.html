@@ -52,7 +52,7 @@
                 <!-- 监控logo，点击返回main.do -->
                 <a href="/main.do" class="simple-text logo-mini"><img src="../img/monitor.png" /></a>
                 <!-- 显示账号，点击打开用户信息页 -->
-                <a href="/main.do" class="simple-text logo-normal" id="applyPageUserName"></a>
+                <a href="/main.do" class="simple-text logo-normal" id="editPageUserName"></a>
             </div>
             <!--左侧导航栏-->
             <div class="sidebar-wrapper">
@@ -117,16 +117,17 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <h5 class="title">创建新的监控任务</h5>
+                                <h5 class="title">编辑监控任务</h5>
                             </div>
                             <div class="card-body">
-                                <form id="applyPageAddMonitorForm" data-animate-effect="fadeInLeft" onsubmit="return false">
+                                <form id="editPageAddMonitorForm" data-animate-effect="fadeInLeft" onsubmit="return false">
                                     <div class="row">
                                         <div class="col-md-3 pr-1">
                                             <div class="form-group">
                                                 <label>监控任务名称</label>
                                                 <input type="text" class="form-control" placeholder="如监控服务器" id="name" name="name"/>
                                                 <input type="hidden" class="form-control" id="userId" name="userId"/>
+                                                <input type="hidden" class="form-control" id="monitorId" name="monitorId"/>
                                             </div>
                                         </div>
                                     </div>
@@ -168,7 +169,7 @@
                                     <div class="row">
                                         <div class="col-md-2 pr-1">
                                             <div class="form-group">
-                                                <input type="submit" class="btn btn-round btn-primary" value="确认" onclick="addMonitor()"/>
+                                                <input type="submit" class="btn btn-round btn-primary" value="确认修改" onclick="editMonitor()"/>
                                             </div>
                                         </div>
                                     </div>
@@ -187,11 +188,13 @@
     </div>
     <script type = "text/javascript">
         if (account) {
-            document.getElementById("applyPageUserName").innerText = account;
+            document.getElementById("editPageUserName").innerText = account;
         }
         if (userId) {
             document.getElementById("userId").value = userId;
         }
+        // 获取monitorId
+        setFormByUrl(window.location.href);
     </script>
 </body>
 </html>

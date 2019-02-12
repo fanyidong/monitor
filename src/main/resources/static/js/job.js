@@ -52,7 +52,7 @@ function createShowingTable(res, whereDo){
                 // whereDo=1表示main页面，其他表示manage页面
                 if (whereDo !== 1) {
                     tableStr += "<td>"
-                        + "<a href='#' style='font-weight: bolder'>编辑</a>\t"
+                        + "<a href='#' onclick='toEditPage(this)' style='font-weight: bolder'>编辑</a>\t"
                         + "<a href='#' onclick='closeMonitor(this)' style='font-weight: bolder'>" + transformStateReverse(dataArray[i].state) + "</a>\t"
                         + "<a href='#' onclick='delMonitor(this)' style='font-weight: bolder'>删除</a>"
                         + "</td>"
@@ -203,6 +203,81 @@ function addMonitor() {
         type: "POST",
         url: "/addMonitor",
         data: $('#applyPageAddMonitorForm').serialize(),// 获取form表单中的数据
+        dataType: "json",// 预期服务器返回的数据类型
+        success:function (data) {
+            if (data.success) {
+                // 注册成功转到登录页面
+                window.location.href="manage.do"; //在原有窗口打开
+            } else {
+                // 修改信息失败提示
+                alert(data.message);
+            }
+        }
+    });
+}
+
+function toEditPage(obj) {
+    // 得到行对象
+    var trHTML = getRowObj(obj).children;
+    var tds = trHTML[0].children;
+    var tdHTML = tds[0];
+    window.location.href="edit.do?monitorId=" + tdHTML.innerHTML;
+}
+
+function setFormByUrl(url) {
+    var args = url.split("?");
+    var monitorId = '';
+    // 参数为空
+    if(args[0] !== args) {
+        var str = args[1];
+        args = str.split("&");
+        for(var i = 0; i < args.length; i++ ) {
+            str = args[i];
+            var arg = str.split("=");
+            if(arg.length <= 1) continue;
+            if(arg[0] === 'monitorId') {
+                monitorId = arg[1];
+                break;
+            }
+        }
+        // 根据monitorId获取监控详情
+        if (monitorId!==''){
+            getMonitor(monitorId);
+        }
+    }
+}
+
+// 获取任务列表
+function getMonitor(monitorId) {
+    $.ajax({
+        type: "POST",
+        url: "/getMonitor",
+        data: {"monitorId":monitorId},
+        dataType: "json",// 预期服务器返回的数据类型
+        success:function (data) {
+            if (data.success) {
+                var monitorObj = data.data;
+                // 调用创建table方法
+                document.getElementById("monitorId").value = monitorId;
+                document.getElementById("name").value = monitorObj.name;
+                document.getElementById("type").value = monitorObj.type;
+                document.getElementById("url").value = monitorObj.url;
+                document.getElementById("warnMethod").value = monitorObj.warnMethod;
+                document.getElementById("watchTime").value = monitorObj.watchTime;
+            } else {
+                // 修改信息失败提示
+                alert(data.message);
+            }
+        }
+    });
+}
+
+// 编辑监控任务
+function editMonitor() {
+    $.ajax({
+        type: "POST",
+        url: "/editMonitor",
+        data: $('#editPageAddMonitorForm').serialize(),// 获取form表单中的数据
         dataType: "json",// 预期服务器返回的数据类型
         success:function (data) {
             if (data.success) {
