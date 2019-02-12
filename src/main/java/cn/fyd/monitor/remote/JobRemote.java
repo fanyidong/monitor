@@ -60,4 +60,12 @@ public interface JobRemote {
      */
     @PostMapping("/delMonitor")
     Response delMonitor(@RequestParam("monitorId") String monitorId);
+
+    /**
+     * 根据主键查询监控任务
+     * @param monitorId 监控id
+     * @return cn.fyd.common.Response 公用返回类
+     */
+    @PostMapping("/getMonitor")
+    Response<Monitor> getMonitor(@RequestParam("monitorId") String monitorId);
 }

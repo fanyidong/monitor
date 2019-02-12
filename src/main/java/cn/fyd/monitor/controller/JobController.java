@@ -76,4 +76,14 @@ public class JobController {
         Response response = jobRemote.delMonitor(monitorId);
         return response.toString();
     }
+
+    @Log(name = "getMonitor")
+    @PostMapping("/getMonitor")
+    public String getMonitor(String monitorId, HttpServletRequest request) {
+        Response<Monitor> response = jobRemote.getMonitor(monitorId);
+        if (response.getData() == null) {
+            response.setMessage(RESPONSE_EMPTY);
+        }
+        return response.toString();
+    }
 }
