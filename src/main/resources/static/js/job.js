@@ -26,7 +26,7 @@ function createShowingTable(res, whereDo){
         tableStr += "id='managePageManageTable'>";
     }
     // table表头
-    tableStr = tableStr + "<thead class='text-primary'><th>监控任务名</th><th>监控地址</th><th>监控频率(分钟)</th><th>监控类型</th><th>警告方式</th><th>状态</th>";
+    tableStr = tableStr + "<thead class='text-primary'><th>监控任务名</th><th>监控地址</th><th>监控频率(分钟)</th><th>监控类型</th><th>警告方式</th><th>可用率</th><th>平均响应时间(ms)</th><th>状态</th>";
     if (whereDo !== 1) {
         tableStr += "<th>操作</th>";
     }
@@ -48,6 +48,8 @@ function createShowingTable(res, whereDo){
                 + "<td>" + dataArray[i].watchTime + "</td>"
                 + "<td>" + transformType(dataArray[i].type) + "</td>"
                 + "<td>" + transformWarnMethod(dataArray[i].warnMethod) + "</td>"
+                + "<td>" + dataArray[i].usable+'%' + "</td>"
+                + "<td>" + dataArray[i].averageResponseTime + "</td>"
                 + "<td>" + transformState(dataArray[i].state) + "</td>";
                 // whereDo=1表示main页面，其他表示manage页面
                 if (whereDo !== 1) {
