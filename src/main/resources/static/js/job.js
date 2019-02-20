@@ -79,7 +79,7 @@ function closeMonitor(obj) {
     var tdArr = tdA[0].children;
     var monitorId = tdArr[0].innerHTML;
     // 获得改监控的状态
-    var state = transformStateReverse(tdArr[6].innerHTML);
+    var state = transformStateReverse(tdArr[8].innerHTML);
     if (monitorId != null && state != null) {
         $.ajax({
             type: "POST",
