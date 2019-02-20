@@ -266,6 +266,11 @@ function getMonitor(monitorId) {
                 document.getElementById("url").value = monitorObj.url;
                 document.getElementById("warnMethod").value = monitorObj.warnMethod;
                 document.getElementById("watchTime").value = monitorObj.watchTime;
+                document.getElementById("requestMethod").value = monitorObj.requestMethod;
+                document.getElementById("commitContent").value = monitorObj.commitContent;
+                document.getElementById("matchTarget").value = monitorObj.matchTarget;
+                document.getElementById("matchType").value = monitorObj.matchType;
+                document.getElementById("matchContent").value = monitorObj.matchContent;
             } else {
                 // 修改信息失败提示
                 alert(data.message);
