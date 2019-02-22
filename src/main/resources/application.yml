@@ -19,6 +19,8 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://${eureka.instance.hostname}:8000/eureka/
+    # 解决Load balancer does not have available server for client问题
+    fetch-registry: true
 
 feign:
   hystrix:
@@ -46,7 +48,7 @@ ribbon:
 
 #远程服务名
 microService:
-  login: monitor-login
+  login: monitor.login.fyd
 #  job: monitor-job
 
 #设置需要输出包的日志级别
