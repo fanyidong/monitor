@@ -2,6 +2,7 @@ package cn.fyd.monitor.remote;
 
 import cn.fyd.common.Response;
 import cn.fyd.model.Monitor;
+import cn.fyd.model.Stat;
 import com.github.pagehelper.PageInfo;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.stereotype.Service;
@@ -68,4 +69,12 @@ public interface JobRemote {
      */
     @PostMapping("/getMonitor")
     Response<Monitor> getMonitor(@RequestParam("monitorId") String monitorId);
+
+    /**
+     * 获取统计信息
+     * @param userId 用户id
+     * @return Stat实体类
+     */
+    @PostMapping("getStat")
+    Response<Stat> getStat(@RequestParam("userId") String userId);
 }

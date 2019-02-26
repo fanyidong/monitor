@@ -3,6 +3,7 @@ package cn.fyd.monitor.controller;
 import cn.fyd.annotation.Log;
 import cn.fyd.common.Response;
 import cn.fyd.model.Monitor;
+import cn.fyd.model.Stat;
 import cn.fyd.model.User;
 import cn.fyd.monitor.remote.JobRemote;
 import cn.fyd.monitor.remote.LoginRemote;
@@ -81,6 +82,16 @@ public class JobController {
     @PostMapping("/getMonitor")
     public String getMonitor(String monitorId, HttpServletRequest request) {
         Response<Monitor> response = jobRemote.getMonitor(monitorId);
+        if (response.getData() == null) {
+            response.setMessage(RESPONSE_EMPTY);
+        }
+        return response.toString();
+    }
+
+    @Log(name = "getStat")
+    @PostMapping("/getStat")
+    public String getStat(String userId, HttpServletRequest request) {
+        Response<Stat> response = jobRemote.getStat(userId);
         if (response.getData() == null) {
             response.setMessage(RESPONSE_EMPTY);
         }
