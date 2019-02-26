@@ -1,4 +1,4 @@
-demo = {
+    demo = {
     initPickColor: function(){
         $('.pick-class-label').click(function(){
             var new_class = $(this).attr('new-class');
@@ -209,7 +209,7 @@ demo = {
           data: {
               labels: ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"],
               datasets: [{
-                  label: "Data",
+                  label: "异常次数",
                   borderColor: chartColor,
                   pointBorderColor: chartColor,
                   pointBackgroundColor: "#1e3d60",
@@ -222,7 +222,7 @@ demo = {
                   fill: true,
                   backgroundColor: gradientFill,
                   borderWidth: 2,
-                  data: [50, 150, 100, 190, 130, 90, 150, 160, 120, 140, 190, 95]
+                  data: [1, 150, 100, 190, 130, 90, 150, 160, 120, 140, 190, 95]
               }]
           },
           options: {
@@ -303,7 +303,7 @@ demo = {
           data: {
               labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
               datasets: [{
-                  label: "Active Users",
+                  label: "可用率",
                   borderColor: "#f96332",
                   pointBorderColor: "#FFF",
                   pointBackgroundColor: "#f96332",
@@ -335,9 +335,9 @@ demo = {
           type: 'line',
           responsive: true,
           data: {
-              labels: ["12pm,", "3pm", "6pm", "9pm", "12am", "3am", "6am", "9am"],
+              labels: ["name1", "3pm", "6pm", "9pm", "12am", "12am", "12am", "12am","",""],
               datasets: [{
-                  label: "Email Stats",
+                  label: "平均响应时间",
                   borderColor: "#18ce0f",
                   pointBorderColor: "#FFF",
                   pointBackgroundColor: "#18ce0f",
@@ -348,7 +348,7 @@ demo = {
                   fill: true,
                   backgroundColor: gradientFill,
                   borderWidth: 2,
-                  data: [40, 500, 650, 700, 1200, 1250, 1300, 1900]
+                  data: [40, 500, 650, 700, 1200,1,2,3,0,0]
               }]
           },
           options: gradientChartOptionsConfigurationWithNumbersAndGrid
@@ -363,9 +363,9 @@ demo = {
       var a =  {
         type : "bar",
         data : {
-          labels : ["January","February","March","April","May","June","July","August","September","October","November","December"],
+          labels : ["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"],
           datasets: [{
-            label: "Active Countries",
+            label: "异常次数",
             backgroundColor: gradientFill,
             borderColor: "#2CA8FF",
             pointBorderColor: "#FFF",
@@ -376,7 +376,7 @@ demo = {
             pointRadius: 4,
             fill: true,
             borderWidth: 1,
-            data: [80,99,86,96,123,85,100,75,88,90,123,155]
+            data: [1,99,86,96,123,85,100,75,88,90,123,155]
           }]
         },
         options: {
