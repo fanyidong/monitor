@@ -94,7 +94,7 @@
                                 <span class="navbar-toggler-bar bar3"></span>
                             </button>
                         </div>
-                        <a class="navbar-brand">近十二个月以来监控项目的异常情况</a>
+                        <a class="navbar-brand">监控任务出现异常的时段（0:00代表0:00~0:59时段出现的异常次数）</a>
                     </div>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -136,8 +136,8 @@
                                 <!--<h5 class="card-category">Global Sales</h5>-->
                                 <h4 class="card-title">可用率</h4>
                                 <div class="dropdown">
-                                    <button type="button" class="btn btn-round btn-default dropdown-toggle btn-simple btn-icon no-caret" data-toggle="dropdown">
-                                        <i class="now-ui-icons ui-1_send"></i>
+                                    <button type="button" class="btn btn-round btn-default dropdown-toggle btn-simple btn-icon no-caret" data-toggle="dropdown" title="查看所有监控任务的可用率">
+                                        <i class="now-ui-icons media-2_sound-wave"></i>
                                     </button>
                                 </div>
                             </div>
@@ -147,7 +147,7 @@
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <div class="stats"><i class="now-ui-icons arrows-1_refresh-69"></i>近12次监控</div>
+                                <div class="stats"><i class="now-ui-icons arrows-1_refresh-69"></i>最多显示10项监控任务</div>
                             </div>
                         </div>
                     </div>
@@ -155,17 +155,11 @@
                         <div class="card card-chart">
                             <div class="card-header">
                                 <!--<h5 class="card-category">2018 Sales</h5>-->
-                                <h4 class="card-title">响应时间</h4>
+                                <h4 class="card-title">平均响应时间</h4>
                                 <div class="dropdown">
-                                    <button type="button" class="btn btn-round btn-default dropdown-toggle btn-simple btn-icon no-caret" data-toggle="dropdown">
-                                        <i class="now-ui-icons loader_gear"></i>
+                                    <button type="button" class="btn btn-round btn-default dropdown-toggle btn-simple btn-icon no-caret" data-toggle="dropdown" title="查看所有监控任务的平均响应时间">
+                                        <i class="now-ui-icons ui-1_zoom-bold"></i>
                                     </button>
-                                    <div class="dropdown-menu dropdown-menu-right">
-                                        <a class="dropdown-item" href="#">Action</a>
-                                        <a class="dropdown-item" href="#">Another action</a>
-                                        <a class="dropdown-item" href="#">Something else here</a>
-                                        <a class="dropdown-item text-danger" href="#">Remove Data</a>
-                                    </div>
                                 </div>
                             </div>
                             <div class="card-body">
@@ -174,7 +168,7 @@
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <div class="stats"><i class="now-ui-icons arrows-1_refresh-69"></i>近12次监控</div>
+                                <div class="stats"><i class="now-ui-icons arrows-1_refresh-69"></i>最多显示10项监控任务</div>
                             </div>
                         </div>
                     </div>
@@ -183,6 +177,11 @@
                             <div class="card-header">
                                 <!--<h5 class="card-category"></h5>-->
                                 <h4 class="card-title">异常情况</h4>
+                                <div class="dropdown">
+                                    <button type="button" class="btn btn-round btn-default dropdown-toggle btn-simple btn-icon no-caret" data-toggle="dropdown" title="查看所有监控任务的异常情况">
+                                        <i class="now-ui-icons ui-2_time-alarm"></i>
+                                    </button>
+                                </div>
                             </div>
                             <div class="card-body">
                                 <div class="chart-area">
@@ -190,7 +189,7 @@
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <div class="stats"><i class="now-ui-icons ui-2_time-alarm"></i>近12小时</div>
+                                <div class="stats"><i class="now-ui-icons ui-2_time-alarm"></i>最多显示10项监控任务</div>
                             </div>
                         </div>
                     </div>

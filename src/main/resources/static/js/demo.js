@@ -1,4 +1,9 @@
     demo = {
+
+    // 获取统计结果
+
+
+
     initPickColor: function(){
         $('.pick-class-label').click(function(){
             var new_class = $(this).attr('new-class');
@@ -204,10 +209,12 @@
       gradientFill.addColorStop(0, "rgba(128, 182, 244, 0)");
       gradientFill.addColorStop(1, "rgba(255, 255, 255, 0.24)");
 
+      // 最上方最大的图标
       var myChart = new Chart(ctx, {
           type: 'line',
           data: {
-              labels: ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"],
+              labels: ["0:00","1:00","2:00","3:00","4:00","5:00","6:00","7:00","8:00","9:00","10:00","11:00",
+                  "12:00","13:00", "14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00","23:00"],
               datasets: [{
                   label: "异常次数",
                   borderColor: chartColor,
@@ -222,7 +229,7 @@
                   fill: true,
                   backgroundColor: gradientFill,
                   borderWidth: 2,
-                  data: [1, 150, 100, 190, 130, 90, 150, 160, 120, 140, 190, 95]
+                  data: [1, 2, 3, 4, 5, 6, 7, 8, 9,10, 11, 12 , 1, 2, 3, 4, 5, 6, 7, 8, 9,10, 11, 12]
               }]
           },
           options: {
@@ -297,11 +304,12 @@
       gradientFill.addColorStop(0, "rgba(128, 182, 244, 0)");
       gradientFill.addColorStop(1, "rgba(249, 99, 59, 0.40)");
 
+      // 左侧可用率图标
       myChart = new Chart(ctx, {
           type: 'line',
           responsive: true,
           data: {
-              labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+              labels: ["监控名1","监控名2","监控名3月","监控名4月","监控名5月","监控名6月","监控名7月","监控名8月","监控名9月","监控名10月","监控名11月","监控名12月"],
               datasets: [{
                   label: "可用率",
                   borderColor: "#f96332",
@@ -314,7 +322,7 @@
                   fill: true,
                   backgroundColor: gradientFill,
                   borderWidth: 2,
-                  data: [542, 480, 430, 550, 530, 453, 380, 434, 568, 610, 700, 630]
+                  data: [10, 48, 43, 55, 53, 45, 38, 43, 56, 61, 70, 63]
               }]
           },
           options: gradientChartOptionsConfiguration
@@ -331,11 +339,12 @@
       gradientFill.addColorStop(0, "rgba(128, 182, 244, 0)");
       gradientFill.addColorStop(1, hexToRGB('#18ce0f',0.4));
 
+      // 中间平均响应时间图表
       myChart = new Chart(ctx, {
           type: 'line',
           responsive: true,
           data: {
-              labels: ["name1", "3pm", "6pm", "9pm", "12am", "12am", "12am", "12am","",""],
+              labels: ["监控名1","监控名2"],
               datasets: [{
                   label: "平均响应时间",
                   borderColor: "#18ce0f",
@@ -348,7 +357,7 @@
                   fill: true,
                   backgroundColor: gradientFill,
                   borderWidth: 2,
-                  data: [40, 500, 650, 700, 1200,1,2,3,0,0]
+                  data: [40, 50, 0, 0, 0,0,0,0,0,0]
               }]
           },
           options: gradientChartOptionsConfigurationWithNumbersAndGrid
@@ -360,10 +369,11 @@
       gradientFill.addColorStop(0, "rgba(128, 182, 244, 0)");
       gradientFill.addColorStop(1, hexToRGB('#2CA8FF', 0.6));
 
+      // 右侧图表
       var a =  {
         type : "bar",
         data : {
-          labels : ["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"],
+          labels : ["监控1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"],
           datasets: [{
             label: "异常次数",
             backgroundColor: gradientFill,
@@ -376,7 +386,7 @@
             pointRadius: 4,
             fill: true,
             borderWidth: 1,
-            data: [1,99,86,96,123,85,100,75,88,90,123,155]
+            data: [1,2,6,9,3,5,10,7,8,0,3,5]
           }]
         },
         options: {
