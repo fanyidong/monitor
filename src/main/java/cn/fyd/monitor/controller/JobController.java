@@ -16,8 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 
-import static cn.fyd.common.Constant.RESPONSE_EMPTY;
-import static cn.fyd.common.Constant.USER_NOT_EXIST;
+import static cn.fyd.common.Constant.*;
 
 /**
  * job子服务控制层
@@ -92,8 +91,9 @@ public class JobController {
     @PostMapping("/getStat")
     public String getStat(String userId, HttpServletRequest request) {
         Response<Stat> response = jobRemote.getStat(userId);
+        // 如果返回结果是null，需要赋值errorsInHours列表
         if (response.getData() == null) {
-            response.setMessage(RESPONSE_EMPTY);
+            response.setData(new Stat());
         }
         return response.toString();
     }
