@@ -160,9 +160,9 @@ function getRowNo(obj){
 
 // 警告方式(1邮件 2手机)字段转换
 function transformWarnMethod(number) {
-    if (number===1) {
+    if (number==="mail") {
         return "邮件";
-    } else if (number===2) {
+    } else if (number==="phone") {
         return "手机";
     }
 }
@@ -178,11 +178,11 @@ function transformState(number) {
 
 // 监控类型(1网站 2接口 3服务)字段转换
 function transformType(number) {
-    if (number===1) {
+    if (number==="web") {
         return "网站";
-    } else if (number===2) {
+    } else if (number==="api") {
         return "接口"
-    } else if (number===3) {
+    } else if (number==="server") {
         return "服务";
     }
 }
