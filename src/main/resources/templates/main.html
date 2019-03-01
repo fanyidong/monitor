@@ -33,12 +33,6 @@
     <!-- 自定义JS -->
     <script src="../js/login.js"></script>
     <script src="../js/job.js"></script>
-    <script>
-        $(document).ready(function() {
-            // Javascript method's body can be found in assets/js/demos.js
-            demo.initDashboardPageCharts();
-        });
-    </script>
 </head>
 
 <body class="">
@@ -50,6 +44,10 @@
             alert("用户未登录，请重新登录");
             window.location.href="login.do";
         }
+        $(document).ready(function() {
+            // Javascript method's body can be found in assets/js/demos.js
+            demo.initDashboardPageCharts(userId);
+        });
     </script>
     <div class="wrapper ">
         <!-- 可以改变左侧导航栏颜色: data-color="blue | green | orange | red | yellow"-->

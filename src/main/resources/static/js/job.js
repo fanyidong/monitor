@@ -41,10 +41,14 @@ function createShowingTable(res, whereDo){
     // 若返回结果不为空则填充数据
     if (dataArray != null && len > 0) {
         for (var i = 0; i < len; i++) {
+            var shortUrl = dataArray[i].url;
+            if (shortUrl.length > 20) {
+                shortUrl = shortUrl.substring(0,20) + "...";
+            }
             tableStr += "<tbody><tr>"
                 + "<td style='display: none'>" + dataArray[i].monitorId + "</td>"
                 + "<td>" + dataArray[i].name + "</td>"
-                + "<td>" + dataArray[i].url + "</td>"
+                + "<td>" + shortUrl + "</td>"
                 + "<td>" + transformMin(dataArray[i].watchTime) + "</td>"
                 + "<td>" + transformType(dataArray[i].type) + "</td>"
                 + "<td>" + transformWarnMethod(dataArray[i].warnMethod) + "</td>"
@@ -218,6 +222,7 @@ function addMonitor() {
     });
 }
 
+// 编辑按钮
 function toEditPage(obj) {
     // 得到行对象
     var trHTML = getRowObj(obj).children;

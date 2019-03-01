@@ -1,9 +1,5 @@
     demo = {
 
-    // 获取统计结果
-
-
-
     initPickColor: function(){
         $('.pick-class-label').click(function(){
             var new_class = $(this).attr('new-class');
@@ -104,12 +100,40 @@
       });
     },
 
-    initDashboardPageCharts: function(){
+    initDashboardPageCharts: function(userId){
+        var availableRatesInData;
+        var errorsInData;
+        var errorsInHoursInData;
+        var monitorNamesInData;
+        var responseTimesInData;
+        // 获取统计结果
+        $.ajax({
+            type: "POST",
+            url: "/getStat",
+            data: {"userId":userId},
+            dataType: "json",// 预期服务器返回的数据类型
+            async: false,
+            success:function (data) {
+                if (data.success) {
+                    // 数据赋值
+                    availableRatesInData = data.data.availableRates;
+                    errorsInData = data.data.errors;
+                    errorsInHoursInData = data.data.errorsInHours;
+                    monitorNamesInData = data.data.monitorNames;
+                    responseTimesInData = data.data.responseTimes;
+                    console.log("availableRatesInData = " + availableRatesInData)
+                } else {
+                    // 获取数据失败提示
+                    alert(data.message);
+                }
+            }
+        });
 
-      chartColor = "#FFFFFF";
+        console.log("availableRatesInData = " + availableRatesInData)
+        chartColor = "#FFFFFF";
 
-      // General configuration for the charts with Line gradientStroke
-      gradientChartOptionsConfiguration = {
+        // General configuration for the charts with Line gradientStroke
+        gradientChartOptionsConfiguration = {
           maintainAspectRatio: false,
           legend: {
               display: false
@@ -155,9 +179,9 @@
           layout:{
             padding:{left:0,right:0,top:15,bottom:15}
           }
-      };
+        };
 
-      gradientChartOptionsConfigurationWithNumbersAndGrid = {
+        gradientChartOptionsConfigurationWithNumbersAndGrid = {
           maintainAspectRatio: false,
           legend: {
               display: false
@@ -197,20 +221,20 @@
           layout:{
             padding:{left:0,right:0,top:15,bottom:15}
           }
-      };
+        };
 
-      var ctx = document.getElementById('bigDashboardChart').getContext("2d");
+        var ctx = document.getElementById('bigDashboardChart').getContext("2d");
 
-      var gradientStroke = ctx.createLinearGradient(500, 0, 100, 0);
-      gradientStroke.addColorStop(0, '#80b6f4');
-      gradientStroke.addColorStop(1, chartColor);
+        var gradientStroke = ctx.createLinearGradient(500, 0, 100, 0);
+        gradientStroke.addColorStop(0, '#80b6f4');
+        gradientStroke.addColorStop(1, chartColor);
 
-      var gradientFill = ctx.createLinearGradient(0, 200, 0, 50);
-      gradientFill.addColorStop(0, "rgba(128, 182, 244, 0)");
-      gradientFill.addColorStop(1, "rgba(255, 255, 255, 0.24)");
+        var gradientFill = ctx.createLinearGradient(0, 200, 0, 50);
+        gradientFill.addColorStop(0, "rgba(128, 182, 244, 0)");
+        gradientFill.addColorStop(1, "rgba(255, 255, 255, 0.24)");
 
-      // 最上方最大的图标
-      var myChart = new Chart(ctx, {
+        // 最上方最大的图标
+        var myChart = new Chart(ctx, {
           type: 'line',
           data: {
               labels: ["0:00","1:00","2:00","3:00","4:00","5:00","6:00","7:00","8:00","9:00","10:00","11:00",
@@ -229,7 +253,7 @@
                   fill: true,
                   backgroundColor: gradientFill,
                   borderWidth: 2,
-                  data: [1, 2, 3, 4, 5, 6, 7, 8, 9,10, 11, 12 , 1, 2, 3, 4, 5, 6, 7, 8, 9,10, 11, 12]
+                  data: errorsInHoursInData
               }]
           },
           options: {
@@ -289,27 +313,27 @@
                   }]
               }
           }
-      });
+        });
 
-      var cardStatsMiniLineColor = "#fff",
+        var cardStatsMiniLineColor = "#fff",
           cardStatsMiniDotColor = "#fff";
 
-      ctx = document.getElementById('lineChartExample').getContext("2d");
+        ctx = document.getElementById('lineChartExample').getContext("2d");
 
-      gradientStroke = ctx.createLinearGradient(500, 0, 100, 0);
-      gradientStroke.addColorStop(0, '#80b6f4');
-      gradientStroke.addColorStop(1, chartColor);
+        gradientStroke = ctx.createLinearGradient(500, 0, 100, 0);
+        gradientStroke.addColorStop(0, '#80b6f4');
+        gradientStroke.addColorStop(1, chartColor);
 
-      gradientFill = ctx.createLinearGradient(0, 170, 0, 50);
-      gradientFill.addColorStop(0, "rgba(128, 182, 244, 0)");
-      gradientFill.addColorStop(1, "rgba(249, 99, 59, 0.40)");
+        gradientFill = ctx.createLinearGradient(0, 170, 0, 50);
+        gradientFill.addColorStop(0, "rgba(128, 182, 244, 0)");
+        gradientFill.addColorStop(1, "rgba(249, 99, 59, 0.40)");
 
-      // 左侧可用率图标
-      myChart = new Chart(ctx, {
-          type: 'line',
+        // 左侧可用率图标
+        myChart = new Chart(ctx, {
+          type: 'bar',
           responsive: true,
           data: {
-              labels: ["监控名1","监控名2","监控名3月","监控名4月","监控名5月","监控名6月","监控名7月","监控名8月","监控名9月","监控名10月","监控名11月","监控名12月"],
+              labels: monitorNamesInData,
               datasets: [{
                   label: "可用率",
                   borderColor: "#f96332",
@@ -322,29 +346,29 @@
                   fill: true,
                   backgroundColor: gradientFill,
                   borderWidth: 2,
-                  data: [10, 48, 43, 55, 53, 45, 38, 43, 56, 61, 70, 63]
+                  data: availableRatesInData
               }]
           },
           options: gradientChartOptionsConfiguration
-      });
+        });
 
 
-      ctx = document.getElementById('lineChartExampleWithNumbersAndGrid').getContext("2d");
+        ctx = document.getElementById('lineChartExampleWithNumbersAndGrid').getContext("2d");
 
-      gradientStroke = ctx.createLinearGradient(500, 0, 100, 0);
-      gradientStroke.addColorStop(0, '#18ce0f');
-      gradientStroke.addColorStop(1, chartColor);
+        gradientStroke = ctx.createLinearGradient(500, 0, 100, 0);
+        gradientStroke.addColorStop(0, '#18ce0f');
+        gradientStroke.addColorStop(1, chartColor);
 
-      gradientFill = ctx.createLinearGradient(0, 170, 0, 50);
-      gradientFill.addColorStop(0, "rgba(128, 182, 244, 0)");
-      gradientFill.addColorStop(1, hexToRGB('#18ce0f',0.4));
+        gradientFill = ctx.createLinearGradient(0, 170, 0, 50);
+        gradientFill.addColorStop(0, "rgba(128, 182, 244, 0)");
+        gradientFill.addColorStop(1, hexToRGB('#18ce0f',0.4));
 
-      // 中间平均响应时间图表
-      myChart = new Chart(ctx, {
-          type: 'line',
+        // 中间平均响应时间图表
+        myChart = new Chart(ctx, {
+          type: 'bar',
           responsive: true,
           data: {
-              labels: ["监控名1","监控名2"],
+              labels: monitorNamesInData,
               datasets: [{
                   label: "平均响应时间",
                   borderColor: "#18ce0f",
@@ -357,23 +381,24 @@
                   fill: true,
                   backgroundColor: gradientFill,
                   borderWidth: 2,
-                  data: [40, 50, 0, 0, 0,0,0,0,0,0]
+                  data: responseTimesInData
               }]
           },
           options: gradientChartOptionsConfigurationWithNumbersAndGrid
-      });
+        });
 
-      var e = document.getElementById("barChartSimpleGradientsNumbers").getContext("2d");
 
-      gradientFill = ctx.createLinearGradient(0, 170, 0, 50);
-      gradientFill.addColorStop(0, "rgba(128, 182, 244, 0)");
-      gradientFill.addColorStop(1, hexToRGB('#2CA8FF', 0.6));
+        var e = document.getElementById("barChartSimpleGradientsNumbers").getContext("2d");
 
-      // 右侧图表
-      var a =  {
+        gradientFill = ctx.createLinearGradient(0, 170, 0, 50);
+        gradientFill.addColorStop(0, "rgba(128, 182, 244, 0)");
+        gradientFill.addColorStop(1, hexToRGB('#2CA8FF', 0.6));
+
+        // 右侧图表
+        var a =  {
         type : "bar",
         data : {
-          labels : ["监控1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"],
+          labels : monitorNamesInData,
           datasets: [{
             label: "异常次数",
             backgroundColor: gradientFill,
@@ -386,7 +411,7 @@
             pointRadius: 4,
             fill: true,
             borderWidth: 1,
-            data: [1,2,6,9,3,5,10,7,8,0,3,5]
+            data: errorsInData
           }]
         },
         options: {
@@ -430,7 +455,7 @@
               padding:{left:0,right:0,top:15,bottom:15}
             }
         }
-      };
+        };
 
       var viewsChart = new Chart(e,a);
     },
