@@ -121,7 +121,6 @@
                     errorsInHoursInData = data.data.errorsInHours;
                     monitorNamesInData = data.data.monitorNames;
                     responseTimesInData = data.data.responseTimes;
-                    console.log("availableRatesInData = " + availableRatesInData)
                 } else {
                     // 获取数据失败提示
                     alert(data.message);
@@ -129,7 +128,6 @@
             }
         });
 
-        console.log("availableRatesInData = " + availableRatesInData)
         chartColor = "#FFFFFF";
 
         // General configuration for the charts with Line gradientStroke
