@@ -2,6 +2,7 @@ package cn.fyd.monitor.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 /**
  * 获取页面的控制层
@@ -11,43 +12,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class PageController {
 
-    @GetMapping("/login.do")
-    public String getIndex() {
-        return "login";
-    }
-
-    @GetMapping("/regist.do")
-    public String getRegist() {
-        return "regist";
-    }
-
-    @GetMapping("/forgot.do")
-    public String getForgot() {
-        return "forgot";
-    }
-
-    @GetMapping("/main.do")
-    public String getMainPage() {
-        return "main";
-    }
-
-    @GetMapping("/user.do")
-    public String getUserPage() {
-        return "user";
-    }
-
-    @GetMapping("/manage.do")
-    public String getManage() {
-        return "manage";
-    }
-
-    @GetMapping("/apply.do")
-    public String getApply() {
-        return "apply";
-    }
-
-    @GetMapping("/edit.do")
-    public String getEdit() {
-        return "edit";
+    /**
+     * 请求页面控制层
+     * @param url
+     * @return 页面
+     */
+    @GetMapping("/{url}")
+    public String getPage(@PathVariable("url") String url) {
+        // 存在的thymeleaf模板
+        String pages = "login,regist,forgot,main,user,manage,apply,edit";
+        if (pages.contains(url)) {
+            return url;
+        } else {
+            return "400";
+        }
     }
 }
