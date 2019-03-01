@@ -24,7 +24,7 @@ public class PageController {
         if (pages.contains(url)) {
             return url;
         } else {
-            return "400";
+            return "error";
         }
     }
 }
