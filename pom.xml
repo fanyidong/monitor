@@ -117,6 +117,7 @@
         <repository>
             <id>monitor-utils-master</id>
             <name>utils</name>
+            <!--package是monitor-util仓库的分支，https://raw.github.com/fanyidong/是仓库地址前缀加raw-->
             <url>https://raw.github.com/fanyidong/monitor-utils/package</url>
             <snapshots>
                 <enabled>true</enabled>
