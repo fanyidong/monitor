@@ -20,7 +20,7 @@ public class PageController {
     @GetMapping("/{url}")
     public String getPage(@PathVariable("url") String url) {
         // 存在的thymeleaf模板
-        String pages = "login,regist,forgot,main,user,manage,apply,edit";
+        String pages = "login,regist,forgot,main,user,manage,apply,edit,resInfo";
         if (pages.contains(url)) {
             return url;
         } else {
