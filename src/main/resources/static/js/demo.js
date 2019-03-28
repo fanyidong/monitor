@@ -363,7 +363,7 @@
 
         // 中间平均响应时间图表
         myChart = new Chart(ctx, {
-          type: 'bar',
+          type: 'line',
           responsive: true,
           data: {
               labels: monitorNamesInData,
