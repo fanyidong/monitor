@@ -38,9 +38,9 @@
     <script type = "text/javascript">
         // 获取页数
         let pageNum = 1;
-        var userId = getCookie("userId");
         // 从cookie中获取userId
-        getMonitors(userId, pageNum, 2);
+        var userId = getCookie("userId");
+        // 调用获取监控名的接口
         var account = getCookie("account");
     </script>
     <div class="wrapper ">
@@ -91,7 +91,6 @@
                                     <i class="now-ui-icons arrows-1_minimal-down"></i>
                                 </a>
                                 <div id="resInfoPageChooseMonitor" class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="dropdown-item" href="#">Action</a>
                                 </div>
                             </li>
                         </ul>
@@ -206,6 +205,8 @@
         if (account) {
             document.getElementById("managePageUserName").innerText = account;
         }
+        // 调用获取监控任务名接口
+        getMonitorNames(userId);
     </script>
 </body>
 </html>
