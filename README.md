@@ -378,3 +378,55 @@ monitorId:618f5eba-2e94-11e9-9e5f-00163e0097c7
     "success": true
 }
 ```
+
+### 7.根据monitorId查询监控任务的监控结果（分页）
+* url地址：/getMonitorRes
+* 请求方式：post
+* 参数：
+```$xslt
+monitorId:f9c6191c-8e2c-4563-8f53-f782c6a3b41b
+pageNum:1
+pageSize:12
+```
+* 返回格式（成功）：
+```$xslt
+{
+    "success": true,
+    "message": "成功",
+    "data": {
+        "total": 98,
+        "list": [
+            {
+                "createTime": "2019-04-04 11:22:29",
+                "disabledReason": "不包含指定内容",
+                "endTime": null,
+                "monitorId": "f9c6191c-8e2c-4563-8f53-f782c6a3b41b",
+                "others": null,
+                "responseTime": 147,
+                "resultId": "e07b6f08-5688-11e9-9e5f-00163e0097c7",
+                "startTime": null,
+                "status": 200,
+                "usable": null
+            },{……}
+        ],
+        "pageNum": 1,
+        "pageSize": 12,
+        "size": 12,
+        "startRow": 1,
+        "endRow": 12,
+        "pages": 9,
+        "prePage": 0,
+        "nextPage": 2,
+        "isFirstPage": true,
+        "isLastPage": false,
+        "hasPreviousPage": false,
+        "hasNextPage": true,
+        "navigatePages": 8,
+        "navigatepageNums": [1,2,3,4,5,6,7,8],
+        "navigateFirstPage": 1,
+        "navigateLastPage": 8,
+        "firstPage": 1,
+        "lastPage": 8
+    }
+}
+```
