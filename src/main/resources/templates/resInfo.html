@@ -115,17 +115,13 @@
                         <div class="card card-upgrade">
                             <div class="card-header text-center">
                                 <div class="row">
-                                    <div class="col-md-2 pr-1" style="padding-top: 8px;">
+                                    <div class="col-md-4 pr-1" style="padding-top: 8px;">
                                         <i class="now-ui-icons business_bulb-63">&nbsp;</i>
                                         <span>选择要查看的监控</span>
                                     </div>
                                     <div class="col-md-5 pr-1">
                                         <div class="form-group">
-                                            <select id="resInfoPageChooseMonitor" class="form-control" name="resInfoPageChooseMonitor">
-                                                <option value="web">网站</option>
-                                                <option value="server">服务</option>
-                                                <option value="api">API</option>
-                                            </select>
+                                            <select id="resInfoPageChooseMonitor" class="form-control" name="resInfoPageChooseMonitor"></select>
                                         </div>
                                     </div>
                                 </div>
@@ -200,10 +196,10 @@
                                             <tr>
                                                 <td class="text-center"></td>
                                                 <td class="text-center"></td>
-                                                <td class="text-center"></td>
                                                 <td class="text-center">
                                                     <a href="#" class="btn btn-round btn-default disabled">上一页</a>
                                                 </td>
+                                                <td class="text-center" id="pageNumTd">当前页数 : 1</td>
                                                 <td class="text-center">
                                                     <a href="#" class="btn btn-round btn-primary">下一页</a>
                                                 </td>
