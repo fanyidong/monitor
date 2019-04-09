@@ -2,6 +2,7 @@ package cn.fyd.monitor.remote;
 
 import cn.fyd.common.Response;
 import cn.fyd.model.Monitor;
+import cn.fyd.model.Result;
 import cn.fyd.model.Stat;
 import com.github.pagehelper.PageInfo;
 import org.springframework.cloud.netflix.feign.FeignClient;
@@ -77,4 +78,14 @@ public interface JobRemote {
      */
     @PostMapping("getStat")
     Response<Stat> getStat(@RequestParam("userId") String userId);
+
+    /**
+     * 根据monitorId获取该监控任务的监控结果
+     * @param monitorId 监控任务id
+     * @param pageNum 当前页数
+     * @param pageSize 每页数目
+     * @return cn.fyd.common.Response 公用返回类
+     */
+    @PostMapping("getMonitorRes")
+    Response<PageInfo<Result>> getMonitorRes(@RequestParam("monitorId") String monitorId, @RequestParam("pageNum") Integer pageNum, @RequestParam("pageSize") Integer pageSize);
 }

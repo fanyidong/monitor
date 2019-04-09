@@ -3,20 +3,19 @@ package cn.fyd.monitor.controller;
 import cn.fyd.annotation.Log;
 import cn.fyd.common.Response;
 import cn.fyd.model.Monitor;
+import cn.fyd.model.Result;
 import cn.fyd.model.Stat;
 import cn.fyd.model.User;
 import cn.fyd.monitor.remote.JobRemote;
 import cn.fyd.monitor.remote.LoginRemote;
 import com.github.pagehelper.PageInfo;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 
-import static cn.fyd.common.Constant.*;
+import static cn.fyd.common.Constant.USER_NOT_EXIST;
 
 /**
  * job子服务控制层
@@ -25,8 +24,6 @@ import static cn.fyd.common.Constant.*;
  */
 @RestController
 public class JobController {
-
-    private static Logger log = LoggerFactory.getLogger(JobController.class);
 
     @Autowired
     private JobRemote jobRemote;
@@ -64,9 +61,6 @@ public class JobController {
     @PostMapping("/getMonitors")
     public String getMonitors(String userId, Integer pageNum, Integer pageSize, HttpServletRequest request) {
         Response<PageInfo<Monitor>> response = jobRemote.getMonitors(userId, pageNum, pageSize);
-        if (response.getData().getList().size() == 0) {
-            response.setMessage(RESPONSE_EMPTY);
-        }
         return response.toString();
     }
 
@@ -81,9 +75,6 @@ public class JobController {
     @PostMapping("/getMonitor")
     public String getMonitor(String monitorId, HttpServletRequest request) {
         Response<Monitor> response = jobRemote.getMonitor(monitorId);
-        if (response.getData() == null) {
-            response.setMessage(RESPONSE_EMPTY);
-        }
         return response.toString();
     }
 
@@ -95,6 +86,13 @@ public class JobController {
         if (response.getData() == null) {
             response.setData(new Stat());
         }
+        return response.toString();
+    }
+
+    @Log(name = "getMonitorRes")
+    @PostMapping("/getMonitorRes")
+    public String getMonitorRes(String monitorId, Integer pageNum, Integer pageSize, HttpServletRequest request) {
+        Response<PageInfo<Result>> response = jobRemote.getMonitorRes(monitorId, pageNum, pageSize);
         return response.toString();
     }
 }
