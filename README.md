@@ -344,3 +344,37 @@ monitorId:2372d193-245a-11e9-9e5f-00163e0097c6
 	"success": true
 }
 ```
+
+### 6.根据monitorId查询监控任务详情
+* url地址：/getMonitor
+* 请求方式：post
+* 参数：
+```$xslt
+monitorId:618f5eba-2e94-11e9-9e5f-00163e0097c7
+```
+* 返回格式（成功）：
+```$xslt
+{
+    "data": {
+        "averageResponseTime": null,
+        "commitContent": null,
+        "createTime": "2019-02-12 15:04:03",
+        "matchContent": null,
+        "matchTarget": null,
+        "matchType": null,
+        "monitorId": "618f5eba-2e94-11e9-9e5f-00163e0097c7",
+        "name": "测试1",
+        "requestMethod": "get",
+        "state": 0,
+        "type": "web",
+        "updateTime": "2019-02-28 19:13:09",
+        "url": "www.qq.com",
+        "usable": null,
+        "userId": "0b646c1e-2433-11e9-9e5f-00163e0097c7",
+        "warnMethod": "mail",
+        "watchTime": 100
+    },
+    "message": "成功",
+    "success": true
+}
+```
