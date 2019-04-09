@@ -324,23 +324,43 @@ function getMonitorNames(userId) {
     $.ajax({
         type: "POST",
         url: "/getMonitors",
-        data: {"userId":userId, "pageNum":1, "pageSize":100},
+        data: {"userId":userId, "pageNum":1, "pageSize":20},
         dataType: "json",// 预期服务器返回的数据类型
         success:function (data) {
             if (data.success) {
                 // 塞进来的内容
-                var tableStr = "<a class='dropdown-item' href='/apply.do'>暂无监控任务，去创建新的监控项目</a>";
+                var tableStr = "<option>暂无监控任务，去创建新的监控项目</option>";
                 var dataArray = data.data.list;
-                var len = dataArray.length;
+                // 处理dataArray为空的情况
+                var len = dataArray==null?0:dataArray.length;
                 // 将返回的结果塞进标签中
-                if (dataArray!=null && len > 0) {
+                if (len > 0) {
                     tableStr="";
                     // 若返回结果不为空则填充数据
                     for (var i = 0; i < len; i++) {
-                        tableStr += "<a class='dropdown-item' href='resInfo.do?monitorId=" + dataArray[i].monitorId+"'>" + dataArray[i].name + "</a>";
+                        tableStr += "<option value='"+ dataArray[i].monitorId + "'>" + dataArray[i].name + "</option>";
                     }
                 }
                 $("#resInfoPageChooseMonitor").html(tableStr);
+            } else {
+                // 修改信息失败提示
+                alert(data.message);
+            }
+        }
+    });
+}
+
+// 获取监控结果
+function getResultByMonitorId(monitorId, pageNum) {
+    $.ajax({
+        type: "POST",
+        url: "/getMonitorResByMonitorId",
+        data: {"monitorId":monitorId, "pageNum":pageNum, "pageSize":12},
+        dataType: "json",
+        success:function (data) {
+            if (data.success) {
+                // 塞进来的内容
+
             } else {
                 // 修改信息失败提示
                 alert(data.message);

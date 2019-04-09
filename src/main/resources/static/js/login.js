@@ -161,7 +161,7 @@ function getUserInfo(userId) {
                 let besideEditFormAccount = document.getElementById("besideEditFormAccount");
                 besideEditFormAccount.innerHTML = res.account;
                 let besideEditFormUsingData = document.getElementById("besideEditFormUsingData");
-                besideEditFormUsingData.innerHTML = "成为本站会员已经 " + usingData(res.createTime) + " 天";
+                besideEditFormUsingData.innerHTML = "已经使用本站监控 " + usingData(res.createTime) + " 天";
             } else {
                 // 获取个人信息失败提示
                 alert(data.message);
