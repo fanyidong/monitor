@@ -59,8 +59,8 @@ public class LoginController {
         return res.toString();
     }
 
-    @Log(name = "userInfo")
     @IsLogin
+    @Log(name = "userInfo")
     @PostMapping("/userInfo")
     public String userInfo(String userId, HttpServletRequest request) {
         Response res = loginRemote.userInfo(userId);
@@ -77,8 +77,8 @@ public class LoginController {
         return res.toString();
     }
 
-    @Log(name = "edit")
     @IsLogin
+    @Log(name = "edit")
     @PostMapping("/edit")
     public String edit(User newUser, HttpServletRequest request) {
         // 验证部分参数是否为空

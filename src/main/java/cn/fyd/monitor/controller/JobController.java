@@ -1,5 +1,6 @@
 package cn.fyd.monitor.controller;
 
+import cn.fyd.annotation.IsLogin;
 import cn.fyd.annotation.Log;
 import cn.fyd.common.Response;
 import cn.fyd.model.Monitor;
@@ -30,6 +31,7 @@ public class JobController {
     @Autowired
     private LoginRemote loginRemote;
 
+    @IsLogin
     @Log(name = "addMonitor")
     @PostMapping("/addMonitor")
     public String addMonitor(Monitor monitor, HttpServletRequest request) {
@@ -43,6 +45,7 @@ public class JobController {
         return response.toString();
     }
 
+    @IsLogin
     @Log(name = "closeMonitor")
     @PostMapping("/closeMonitor")
     public String closeMonitor(String monitorId, Integer state, HttpServletRequest request) {
@@ -50,6 +53,7 @@ public class JobController {
         return response.toString();
     }
 
+    @IsLogin
     @Log(name = "editMonitor")
     @PostMapping("/editMonitor")
     public String editMonitor(Monitor monitor, HttpServletRequest request) {
@@ -57,6 +61,7 @@ public class JobController {
         return response.toString();
     }
 
+    @IsLogin
     @Log(name = "getMonitors")
     @PostMapping("/getMonitors")
     public String getMonitors(String userId, Integer pageNum, Integer pageSize, HttpServletRequest request) {
@@ -64,6 +69,7 @@ public class JobController {
         return response.toString();
     }
 
+    @IsLogin
     @Log(name = "delMonitor")
     @PostMapping("/delMonitor")
     public String delMonitor(String monitorId, HttpServletRequest request) {
@@ -71,6 +77,7 @@ public class JobController {
         return response.toString();
     }
 
+    @IsLogin
     @Log(name = "getMonitor")
     @PostMapping("/getMonitor")
     public String getMonitor(String monitorId, HttpServletRequest request) {
@@ -78,6 +85,7 @@ public class JobController {
         return response.toString();
     }
 
+    @IsLogin
     @Log(name = "getStat")
     @PostMapping("/getStat")
     public String getStat(String userId, HttpServletRequest request) {
@@ -89,6 +97,7 @@ public class JobController {
         return response.toString();
     }
 
+    @IsLogin
     @Log(name = "getMonitorRes")
     @PostMapping("/getMonitorRes")
     public String getMonitorRes(String monitorId, Integer pageNum, Integer pageSize, HttpServletRequest request) {
