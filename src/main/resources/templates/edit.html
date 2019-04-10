@@ -255,7 +255,11 @@
             document.getElementById("userId").value = userId;
         }
         // 获取monitorId
-        setFormByUrl(window.location.href);
+        var monitorId = getMonitorIdByUrl(window.location.href, "monitorId");
+        // 根据monitorId获取监控详情
+        if (monitorId!==''){
+            getMonitor(monitorId);
+        }
     </script>
 </body>
 </html>

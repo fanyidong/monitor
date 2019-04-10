@@ -136,74 +136,7 @@
                                             <th class="text-center">是否可用</th>
                                             <th class="text-center">不可用原因</th>
                                         </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Components</td>
-                                                <td class="text-center">16</td>
-                                                <td class="text-center">160</td>
-                                                <td class="text-center">16</td>
-                                                <td class="text-center">16</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Plugins</td>
-                                                <td class="text-center">3</td>
-                                                <td class="text-center">16</td>
-                                                <td class="text-center">16</td>
-                                                <td class="text-center">13</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Example Pages</td>
-                                                <td class="text-center">7</td>
-                                                <td class="text-center">27</td>
-                                                <td class="text-center">16</td>
-                                                <td class="text-center">16</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Login, Register, Pricing, Lock Pages</td>
-                                                <td class="text-center">7</td>
-                                                <td class="text-center">27</td>
-                                                <td class="text-center">16</td>
-                                                <td class="text-center">16</td>
-                                            </tr>
-                                            <tr>
-                                                <td>DataTables, VectorMap, SweetAlert</td>
-                                                <td class="text-center">7</td>
-                                                <td class="text-center">27</td>
-                                                <td class="text-center">16</td>
-                                                <td class="text-center">16</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Mini Sidebar</td>
-                                                <td class="text-center">7</td>
-                                                <td class="text-center">27</td>
-                                                <td class="text-center">16</td>
-                                                <td class="text-center">16</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Premium Support</td>
-                                                <td class="text-center">16</td>
-                                                <td class="text-center">16</td>
-                                                <td class="text-center"><i class="now-ui-icons ui-1_simple-remove text-danger"></i></td>
-                                                <td class="text-center"><i class="now-ui-icons ui-1_check text-success"></i></td>
-                                            </tr>
-                                            <tr>
-                                                <td></td>
-                                                <td class="text-center">Free</td>
-                                                <td class="text-center">Just $49</td>
-                                                <td class="text-center">16</td>
-                                                <td class="text-center">16</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-center"></td>
-                                                <td class="text-center"></td>
-                                                <td class="text-center">
-                                                    <a href="#" class="btn btn-round btn-default disabled">上一页</a>
-                                                </td>
-                                                <td class="text-center" id="pageNumTd">当前页数 : 1</td>
-                                                <td class="text-center">
-                                                    <a href="#" class="btn btn-round btn-primary">下一页</a>
-                                                </td>
-                                            </tr>
+                                        <tbody id="resTableTBody">
                                         </tbody>
                                     </table>
                                 </div>
@@ -225,6 +158,10 @@
         }
         // 调用获取监控任务名接口
         getMonitorNames(userId);
+        // 获取monitorId
+        var monitorId = getMonitorIdByUrl(window.location.href, "monitorId");
+        var pageNum = getMonitorIdByUrl(window.location.href, "pageNum");
+        getResultByMonitorId(monitorId, pageNum);
     </script>
 </body>
 </html>

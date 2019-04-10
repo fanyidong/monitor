@@ -231,27 +231,24 @@ function toEditPage(obj) {
     window.location.href="edit.do?monitorId=" + tdHTML.innerHTML;
 }
 
-function setFormByUrl(url) {
+function getMonitorIdByUrl(url, paramString) {
     var args = url.split("?");
-    var monitorId = '';
+    var param = '';
     // 参数为空
-    if(args[0] !== args) {
+    if(args[0] !== args && args.length > 1) {
         var str = args[1];
         args = str.split("&");
         for(var i = 0; i < args.length; i++ ) {
             str = args[i];
             var arg = str.split("=");
             if(arg.length <= 1) continue;
-            if(arg[0] === 'monitorId') {
-                monitorId = arg[1];
+            if(arg[0] === paramString) {
+                param = arg[1];
                 break;
             }
         }
-        // 根据monitorId获取监控详情
-        if (monitorId!==''){
-            getMonitor(monitorId);
-        }
     }
+    return param;
 }
 
 // 获取任务列表
@@ -354,13 +351,60 @@ function getMonitorNames(userId) {
 function getResultByMonitorId(monitorId, pageNum) {
     $.ajax({
         type: "POST",
-        url: "/getMonitorResByMonitorId",
+        url: "/getMonitorRes",
         data: {"monitorId":monitorId, "pageNum":pageNum, "pageSize":12},
         dataType: "json",
         success:function (data) {
             if (data.success) {
-                // 塞进来的内容
-
+                // 需要创建的table内容
+                var tbodyString = "";
+                // 返回的监控结果列表
+                var dataArray = data.data.list;
+                // 处理dataArray为空的情况
+                var len = dataArray==null?0:dataArray.length;
+                // 遍历返回结果，创建表单
+                if (len > 0) {
+                    for (var i = 0; i < len; i++) {
+                        // 创建时间
+                        tbodyString += "<tr><td>" + dataArray[i].createTime + "</td>";
+                        // 响应状态码
+                        var status = dataArray[i].status==null?"无":dataArray[i].status;
+                        tbodyString += "<td class='text-center'>" + status + "</td>"
+                        // 响应时间
+                        tbodyString += "<td class='text-center'>" + dataArray[i].responseTime + " ms</td>";
+                        if (dataArray[i].usable==null || dataArray[i].usable===0) {
+                            // 不可用
+                            tbodyString += "<td class='text-center'><i class='now-ui-icons ui-1_simple-remove text-danger'></i></td>"
+                        } else {
+                            // 可用
+                            tbodyString += "<td class='text-center'><i class='now-ui-icons ui-1_check text-success'></i></td>"
+                        }
+                        // 不可用原因
+                        var disabledReason = dataArray[i].disabledReason==null?"无":dataArray[i].disabledReason;
+                        tbodyString += "<td class='text-center'>" + disabledReason +"</td>"
+                    }
+                }
+                // 添加分页的内容
+                tbodyString += "<tr><td class='text-center'></td><td class='text-center'></td>";
+                if (data.data.hasPreviousPage===true) {
+                    // 存在上一页
+                    var prePage = data.data.prePage;
+                    tbodyString += "<td class='text-center'><a href='resInfo.do?monitorId=" + monitorId +
+                        "&pageNum=" + prePage + "' class='btn btn-round btn-default'>上一页</a></td>";
+                } else {
+                    tbodyString += "<td class='text-center'><a href='#' class='btn btn-round btn-default disabled'>上一页</a></td>";
+                }
+                // 当前页数
+                tbodyString += "<td class='text-center'>当前页数 : " + data.data.pageNum + "</td>";
+                if (data.data.hasNextPage===true) {
+                    // 存在下一页
+                    var nextPage = data.data.nextPage;
+                    tbodyString += "<td class='text-center'><a href='resInfo.do?monitorId=" + monitorId +
+                        "&pageNum=" + nextPage + "' class='btn btn-round btn-primary'>下一页</a></td>";
+                } else {
+                    tbodyString += "<td class='text-center'><a href='#' class='btn btn-round btn-primary disabled'>下一页</a></td>";
+                }
+                $("#resTableTBody").html(tbodyString);
             } else {
                 // 修改信息失败提示
                 alert(data.message);
