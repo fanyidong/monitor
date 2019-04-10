@@ -10,7 +10,6 @@ import org.aspectj.lang.annotation.Aspect;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -59,28 +58,6 @@ public class Aop {
         User userBean = (User) session.getAttribute(USER_BEAN);
         if (userBean == null) {
             return Response.failed(USER_NOT_LOGIN).toString();
-        }
-        // 获取参数列表中的第一个参数
-        Object firstParam = args[0];
-        // 获取参数中的userId
-        String userId = null;
-        // 给userId赋值
-        if (firstParam instanceof String) {
-            // 查询用户个人信息接口(/userInfo)
-            userId = (String) firstParam;
-        } else if (firstParam instanceof User) {
-            // 修改用户个人信息接口(/edit)
-            userId = ((User) firstParam).getUserId();
-        } else {
-            // 待补充
-        }
-        // 参数为空
-        if (StringUtils.isEmpty(userId)) {
-            return Response.failed(EMPTY_PARAMS).toString();
-        }
-        // 验证是否是登录用户操作本人数据
-        if (!userBean.getUserId().equals(userId)) {
-            return Response.failed(WRONG_USER).toString();
         }
         return pjp.proceed(args);
     }
