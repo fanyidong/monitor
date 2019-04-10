@@ -418,10 +418,3 @@ function getResultByMonitorId(monitorId, pageNum) {
         }
     });
 }
-
-function changeSelected(monitorId) {
-    var selectObj = document.getElementById(monitorId);
-    if (selectObj!=null) {
-        selectObj.attr("selected", "selected")
-    }
-}
