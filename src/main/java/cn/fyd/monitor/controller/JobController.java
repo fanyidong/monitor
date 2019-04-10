@@ -32,7 +32,6 @@ public class JobController {
     private LoginRemote loginRemote;
 
     @IsLogin
-    @Log(name = "addMonitor")
     @PostMapping("/addMonitor")
     public String addMonitor(Monitor monitor, HttpServletRequest request) {
         // 根据userId查询该用户是否存在
@@ -46,7 +45,6 @@ public class JobController {
     }
 
     @IsLogin
-    @Log(name = "closeMonitor")
     @PostMapping("/closeMonitor")
     public String closeMonitor(String monitorId, Integer state, HttpServletRequest request) {
         Response response = jobRemote.closeMonitor(monitorId, state);
@@ -54,7 +52,6 @@ public class JobController {
     }
 
     @IsLogin
-    @Log(name = "editMonitor")
     @PostMapping("/editMonitor")
     public String editMonitor(Monitor monitor, HttpServletRequest request) {
         Response response = jobRemote.editMonitor(monitor);
@@ -62,7 +59,6 @@ public class JobController {
     }
 
     @IsLogin
-    @Log(name = "getMonitors")
     @PostMapping("/getMonitors")
     public String getMonitors(String userId, Integer pageNum, Integer pageSize, HttpServletRequest request) {
         Response<PageInfo<Monitor>> response = jobRemote.getMonitors(userId, pageNum, pageSize);
@@ -70,7 +66,6 @@ public class JobController {
     }
 
     @IsLogin
-    @Log(name = "delMonitor")
     @PostMapping("/delMonitor")
     public String delMonitor(String monitorId, HttpServletRequest request) {
         Response response = jobRemote.delMonitor(monitorId);
@@ -78,7 +73,6 @@ public class JobController {
     }
 
     @IsLogin
-    @Log(name = "getMonitor")
     @PostMapping("/getMonitor")
     public String getMonitor(String monitorId, HttpServletRequest request) {
         Response<Monitor> response = jobRemote.getMonitor(monitorId);
@@ -86,7 +80,6 @@ public class JobController {
     }
 
     @IsLogin
-    @Log(name = "getStat")
     @PostMapping("/getStat")
     public String getStat(String userId, HttpServletRequest request) {
         Response<Stat> response = jobRemote.getStat(userId);
@@ -98,7 +91,6 @@ public class JobController {
     }
 
     @IsLogin
-    @Log(name = "getMonitorRes")
     @PostMapping("/getMonitorRes")
     public String getMonitorRes(String monitorId, Integer pageNum, Integer pageSize, HttpServletRequest request) {
         Response<PageInfo<Result>> response = jobRemote.getMonitorRes(monitorId, pageNum, pageSize);
