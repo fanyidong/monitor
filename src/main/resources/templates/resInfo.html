@@ -121,7 +121,7 @@
                                     </div>
                                     <div class="col-md-5 pr-1">
                                         <div class="form-group">
-                                            <select id="resInfoPageChooseMonitor" class="form-control" name="resInfoPageChooseMonitor"></select>
+                                            <select id="resInfoPageChooseMonitor" class="form-control" onchange="changeSelect()"></select>
                                         </div>
                                     </div>
                                 </div>
@@ -159,10 +159,13 @@
         // 获取monitorId
         var monitorId = getMonitorIdByUrl(window.location.href, "monitorId");
         var pageNum = getMonitorIdByUrl(window.location.href, "pageNum");
-        // 调用获取监控结果接口
-        getResultByMonitorId(monitorId, pageNum);
         // 调用获取监控任务名接口并设置默认值
-        getMonitorNames(userId, monitorId);
+        var first = getMonitorNames(userId, monitorId);
+        // 调用获取监控结果接口
+        if (first!=null) {
+            monitorId = first;
+        }
+        getResultByMonitorId(monitorId, pageNum);
     </script>
 </body>
 </html>

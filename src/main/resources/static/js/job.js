@@ -418,3 +418,13 @@ function getResultByMonitorId(monitorId, pageNum) {
         }
     });
 }
+
+function changeSelect() {
+    // 获取select对象
+    var nSel = document.getElementById("resInfoPageChooseMonitor");
+    // 选中索引
+    var index = nSel.selectedIndex;
+    // 选中value
+    var value= nSel.options[index].value;
+    getResultByMonitorId(value, null);
+}
