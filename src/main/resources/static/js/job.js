@@ -317,7 +317,7 @@ function transformMin(min) {
 }
 
 // 获取任务列表的名字供用户选择
-function getMonitorNames(userId) {
+function getMonitorNames(userId, monitorId) {
     $.ajax({
         type: "POST",
         url: "/getMonitors",
@@ -332,10 +332,16 @@ function getMonitorNames(userId) {
                 var len = dataArray==null?0:dataArray.length;
                 // 将返回的结果塞进标签中
                 if (len > 0) {
-                    tableStr="";
+                    tableStr = "<option value=''></option>";
                     // 若返回结果不为空则填充数据
                     for (var i = 0; i < len; i++) {
-                        tableStr += "<option value='"+ dataArray[i].monitorId + "'>" + dataArray[i].name + "</option>";
+                        var thisMonitorId = dataArray[i].monitorId;
+                        // 如果与页面传值的monitorId相等，则设置为默认选中
+                        if (monitorId===thisMonitorId) {
+                            tableStr += "<option value='" + thisMonitorId + "'" + " selected='selected'>" + dataArray[i].name + "</option>";
+                        } else {
+                            tableStr += "<option value='" + thisMonitorId + "'>" + dataArray[i].name + "</option>";
+                        }
                     }
                 }
                 $("#resInfoPageChooseMonitor").html(tableStr);
@@ -411,4 +417,11 @@ function getResultByMonitorId(monitorId, pageNum) {
             }
         }
     });
+}
+
+function changeSelected(monitorId) {
+    var selectObj = document.getElementById(monitorId);
+    if (selectObj!=null) {
+        selectObj.attr("selected", "selected")
+    }
 }

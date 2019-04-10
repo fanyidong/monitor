@@ -156,12 +156,13 @@
         if (account) {
             document.getElementById("managePageUserName").innerText = account;
         }
-        // 调用获取监控任务名接口
-        getMonitorNames(userId);
         // 获取monitorId
         var monitorId = getMonitorIdByUrl(window.location.href, "monitorId");
         var pageNum = getMonitorIdByUrl(window.location.href, "pageNum");
+        // 调用获取监控结果接口
         getResultByMonitorId(monitorId, pageNum);
+        // 调用获取监控任务名接口并设置默认值
+        getMonitorNames(userId, monitorId);
     </script>
 </body>
 </html>
