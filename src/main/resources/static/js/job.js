@@ -391,7 +391,7 @@ function getResultByMonitorId(monitorId, pageNum) {
                     }
                 }
                 // 添加分页的内容
-                tbodyString += "<tr><td class='text-center'></td><td class='text-center'></td>";
+                tbodyString += "<tr><td class='text-center'></td>";
                 if (data.data.hasPreviousPage===true) {
                     // 存在上一页
                     var prePage = data.data.prePage;
@@ -410,6 +410,7 @@ function getResultByMonitorId(monitorId, pageNum) {
                 } else {
                     tbodyString += "<td class='text-center'><a href='#' class='btn btn-round btn-primary disabled'>下一页</a></td>";
                 }
+                tbodyString += "<td class='text-center'></td>";
                 $("#resTableTBody").html(tbodyString);
             } else {
                 // 修改信息失败提示
