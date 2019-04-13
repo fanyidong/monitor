@@ -389,6 +389,9 @@ function getResultByMonitorId(monitorId, pageNum) {
                         var disabledReason = dataArray[i].disabledReason==null?"无":dataArray[i].disabledReason;
                         tbodyString += "<td class='text-center'>" + disabledReason +"</td>"
                     }
+                } else {
+                    // 如果没有监控结果，显示暂无监控结果，赶紧开启监控吧
+                    tbodyString += "<tr><td></td><td></td><td class='text-center'>暂无监控结果，请开启监控后再来查看</td><td></td><td></td></tr>";
                 }
                 // 添加分页的内容
                 tbodyString += "<tr><td class='text-center'></td>";
