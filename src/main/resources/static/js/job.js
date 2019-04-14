@@ -26,7 +26,7 @@ function createShowingTable(res, whereDo){
         tableStr += "id='managePageManageTable'>";
     }
     // table表头
-    tableStr = tableStr + "<thead class='text-primary'><th>监控任务名</th><th>监控地址</th><th>监控频率</th><th>监控类型</th><th>警告方式</th><th>可用率</th><th>平均响应时间</th><th>状态</th>";
+    tableStr = tableStr + "<thead class='text-primary'><th>监控任务名</th><th>监控地址</th><th>监控频率</th><th>监控类型</th><th>警告方式</th><th>可用率</th><th>状态</th>";
     if (whereDo !== 1) {
         tableStr += "<th>操作</th>";
     }
@@ -42,8 +42,8 @@ function createShowingTable(res, whereDo){
     if (dataArray != null && len > 0) {
         for (var i = 0; i < len; i++) {
             var shortUrl = dataArray[i].url;
-            if (shortUrl.length > 20) {
-                shortUrl = shortUrl.substring(0,20) + "...";
+            if (shortUrl.length > 40) {
+                shortUrl = shortUrl.substring(0,40) + "...";
             }
             tableStr += "<tbody><tr>"
                 + "<td style='display: none'>" + dataArray[i].monitorId + "</td>"
@@ -53,7 +53,6 @@ function createShowingTable(res, whereDo){
                 + "<td>" + transformType(dataArray[i].type) + "</td>"
                 + "<td>" + transformWarnMethod(dataArray[i].warnMethod) + "</td>"
                 + "<td>" + dataArray[i].usable+'%' + "</td>"
-                + "<td>" + dataArray[i].averageResponseTime + " ms" + "</td>"
                 + "<td>" + transformState(dataArray[i].state) + "</td>";
                 // whereDo=1表示main页面，其他表示manage页面
                 if (whereDo !== 1) {
