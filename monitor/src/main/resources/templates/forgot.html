@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"><![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8"><![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"><!--<![endif]-->
+	<head>
+	<meta charset="utf-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<title>Monitor服务监控平台</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<meta name="description" content="Free HTML5 Template by FreeHTML5.co" />
+	<meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
+	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+	<link rel="shortcut icon" href="../img/favicon.png"/>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'/>
+	<link rel="stylesheet" href="../css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="../css/animate.css"/>
+	<link rel="stylesheet" href="../css/style.css"/>
+	<!-- Modernizr JS -->
+	<script src="../js/modernizr-2.6.2.min.js"></script>
+	<!-- FOR IE9 below -->
+	<!--[if lt IE 9]><script src="../js/respond.min.js"></script><![endif]-->
+	<!-- jQuery -->
+	<script src="../js/jquery.min.js"></script>
+	<!-- Bootstrap -->
+	<script src="../js/bootstrap.min.js"></script>
+	<!-- Placeholder -->
+	<script src="../js/jquery.placeholder.min.js"></script>
+	<!-- Waypoints -->
+	<script src="../js/jquery.waypoints.min.js"></script>
+	<!-- Main JS -->
+	<script src="../js/main.js"></script>
+	<!-- Login JS -->
+	<script src="../js/login.js"></script>
+	</head>
+	<body class="style-2">
+		<div class="container">
+			<div class="row" style="padding-top: 150px">
+				<div class="col-md-4">
+					<!-- Start Sign In Form -->
+					<form id="mailForm" class="fh5co-form animate-box" data-animate-effect="fadeInLeft"  onsubmit="return false">
+						<h2>忘记密码</h2>
+						<div class="form-group">
+							<div class="alert alert-success" role="alert" id="responseMess" style="display: none"></div>
+						</div>
+						<div class="form-group">
+							<label for="email" class="sr-only">Email</label>
+							<input type="email" class="form-control" id="email" name="email" placeholder="请输入邮箱" autocomplete="off"/>
+						</div>
+						<div class="form-group" id="resetSecretKey" style="display: none">
+							<label for="secretKey" class="sr-only">安全码</label>
+							<input type="secretKey" class="form-control" id="secretKey" name="secretKey" placeholder="请输入安全码" autocomplete="off"/>
+						</div>
+						<div class="form-group" id="resetPassword" style="display: none">
+							<label for="password" class="sr-only">密码</label>
+							<input type="password" class="form-control" id="password" name="password" placeholder="请输入新密码" autocomplete="off"/>
+						</div>
+						<div class="form-group" style="margin-left: 10px">
+							<p><a href="/login.do">登 录</a> or <a href="/regist.do">注 册</a></p>
+						</div>
+						<div class="form-group">
+							<input id="submitInput" type="submit" value="发送邮件" class="btn btn-primary" onclick="sendEmail()" style="display: block"/>
+                            <input id="submitResetInput" type="submit" value="修改密码" class="btn btn-primary" onclick="resetPass()" style="display: none"/>
+						</div>
+					</form>
+					<!-- END Sign In Form -->
+				</div>
+			</div>
+			<!-- padding-top发送邮件270px -->
+			<div class="row" style="padding-top: 270px; clear: both;">
+				<div class="col-md-12 text-center">
+					<p>
+						<small>Copyright &copy; 2019 Monitor 服务监控平台 版权所有</small>
+					</p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+

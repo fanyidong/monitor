@@ -1,0 +1,62 @@
+server:
+  port: 8001
+
+spring:
+  application:
+    name: monitor
+  # thymeleaf
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    # 开发阶段务必关闭缓存 (=false)
+    cache: false
+
+eureka:
+  instance:
+    #设置服务名称
+    hostname: 127.0.0.1
+    # 将ip注册到注册中心
+    prefer-ip-address: true
+    # 注册时使用公网ip
+    ip-address: ${eureka.instance.hostname}
+  client:
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:8000/eureka/
+    # 解决Load balancer does not have available server for client问题
+    fetch-registry: true
+    # 健康检查机制
+    healthcheck:
+      enabled: true
+
+feign:
+  hystrix:
+    enable: true
+
+#feign调用默认是1000毫秒=1秒,应该设置成更长时间1000*60=1分钟
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+      circuitBreaker:
+        sleepWindowInMilliseconds: 60000
+        forceClosed: true
+
+ribbon:
+  eureka:
+    enabled: true
+  #请求处理的超时时间
+  ReadTimeout: 60000
+  #请求连接的超时时间
+  ConnectTimeout: 60000
+
+#远程服务名
+microService:
+  login: monitor.login
+
+#设置需要输出包的日志级别
+logging:
+  level:
+    cn.fyd: debug
