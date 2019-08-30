@@ -1,0 +1,24 @@
+server:
+  port: 8000
+
+spring:
+  application:
+  name: monitor-server
+
+eureka:
+  instance:
+    #设置服务名称
+    hostname: 127.0.0.1
+  client:
+    #注册中心不需要注册自己
+    register-with-eureka: false
+    #注册中心不需要去发现服务
+    fetch-registry: false
+    #设置服务注册中心的URL
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+  server:
+    # 关闭Eruaka的自我保护
+    enable-self-preservation: false
+    # 清理关闭的服务的时间间隔（单位ms 60*1000）
+    eviction-interval-timer-in-ms: 60000
