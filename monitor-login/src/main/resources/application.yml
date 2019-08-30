@@ -1,0 +1,85 @@
+server:
+  port: 8002
+
+sabredon:
+  server-url: 127.0.0.1
+
+eureka:
+  instance:
+    #设置服务名称
+    hostname: ${sabredon.server-url}
+    # 将ip注册到注册中心
+    prefer-ip-address: true
+    # 注册时使用公网ip
+    ip-address: ${eureka.instance.hostname}
+  client:
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:8000/eureka/
+    # 解决Load balancer does not have available server for client问题
+    fetch-registry: true
+    # 健康检查机制
+    healthcheck:
+      enabled: true
+
+feign:
+  hystrix:
+    enabled: false
+
+spring:
+  application:
+    name: monitor.login
+  #配置数据库
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://${sabredon.server-url}:3306/monitor?useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: admin
+    #数据源类型
+    type: com.alibaba.druid.pool.DruidDataSource
+    #显示sql语句
+    jpa:
+      dashow-sql: true
+  #邮件部分
+  mail:
+    host: smtp.qq.com
+    username: monitoringmail@foxmail.com
+    #发送方的授权码
+    password: ljpevwaxmmrfbcge
+    default-encoding: UTF-8
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: ture
+          socketFactory:
+            port: 465
+            class: javax.net.ssl.SSLSocketFactory
+            fallback: false
+    # 修改发送邮件TCP端口
+    port: 465
+
+#设置需要输出包的日志级别
+logging:
+  level:
+    cn.fyd: debug
+
+#mapper文件路径
+mybatis:
+  mapper-locations: classpath*:mapper/*.xml
+  type-aliases-package: cn.fyd.monitorlogin.dao
+
+ribbon:
+  eureka:
+    enabled: true
+
+#http超时时间设置
+http:
+  request:
+    #连接主机服务超过时间
+    connect-timeout: 35000
+    #设置连接请求超时时间
+    connection-request-timeout: 35000
+    #设置读取数据连接超时时间
+    socket-timeout: 60000

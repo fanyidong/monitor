@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.fyd.monitorlogin.dao.MonitorDao">
+    <sql id="Example_Where_Clause">
+        <trim prefix="where 1=1">
+            <if test="monitorId!=null and monitorId!=''">and monitorid=#{monitorId}</if>
+            <if test="userId!=null and userId!=''">and userid=#{userId}</if>
+            <if test="name!=null and name!=''">and name=#{name}</if>
+            <if test="url!=null and url!=''">and url=#{url}</if>
+            <if test="watchTime!=null and watchTime!=''">and watchtime=#{watchTime}</if>
+            <if test="type!=null and type!=''">and type=#{type}</if>
+            <if test="warnMethod!=null and warnMethod!=''">and warnmethod=#{warnMethod}</if>
+            <if test="state!=null and state!=''">and state=#{state}</if>
+            <if test="requestMethod!=null and requestMethod!=''">and requestmethod=#{requestMethod}</if>
+            <if test="matchTarget!=null and matchTarget!=''">and matchtarget=#{matchTarget}</if>
+            <if test="matchType!=null and matchType!=''">and matchtype=#{matchType}</if>
+            <if test="matchContent!=null and matchContent!=''">and matchcontent=#{matchContent}</if>
+            <if test="commitContent!=null and commitContent!=''">and commitcontent=#{commitContent}</if>
+        </trim>
+    </sql>
+
+    <sql id="Example_Set_Clause">
+        <trim prefix="set">
+            <if test="monitorId!=null and monitorId!=''">monitorid=#{monitorId},</if>
+            <if test="userId!=null and userId!=''">userid=#{userId},</if>
+            <if test="name!=null and name!=''">name=#{name},</if>
+            <if test="url!=null and url!=''">url=#{url},</if>
+            <if test="watchTime!=null and watchTime!=''">watchtime=#{watchTime},</if>
+            <if test="type!=null and type!=''">type=#{type},</if>
+            <if test="warnMethod!=null and warnMethod!=''">warnmethod=#{warnMethod},</if>
+            <if test="state!=null and state!=''">state=#{state},</if>
+            <if test="requestMethod!=null and requestMethod!=''">requestmethod=#{requestMethod},</if>
+            <if test="matchTarget!=null and matchTarget!=''">matchtarget=#{matchTarget},</if>
+            <if test="matchType!=null and matchType!=''">matchtype=#{matchType},</if>
+            <if test="matchContent!=null and matchContent!=''">matchcontent=#{matchContent},</if>
+            <if test="commitContent!=null and commitContent!=''">commitcontent=#{commitContent},</if>
+        </trim>updatetime=now()
+    </sql>
+
+    <sql id="Set_IncludeNull_Clause">
+        set name=#{name},url=#{url},watchtime=#{watchTime},type=#{type},warnmethod=#{warnMethod},requestmethod=#{requestMethod},matchtarget=#{matchTarget},matchtype=#{matchType},matchcontent=#{matchContent},commitcontent=#{commitContent},updatetime=now()
+    </sql>
+
+    <insert id="saveMonitor" parameterType="cn.fyd.model.Monitor">
+        insert into monitor
+        <trim prefix="(" suffix=")">
+            monitorid,
+            <if test="userId!=null and userId!=''">userid,</if>
+            <if test="name!=null and name!=''">name,</if>
+            <if test="url!=null and url!=''">url,</if>
+            <if test="watchTime!=null and watchTime!=''">watchtime,</if>
+            <if test="type!=null and type!=''">type,</if>
+            <if test="warnMethod!=null and warnMethod!=''">warnmethod,</if>
+            <if test="state!=null and state!=''">state,</if>
+            <if test="requestMethod!=null and requestMethod!=''">requestmethod,</if>
+            <if test="matchTarget!=null and matchTarget!=''">matchtarget,</if>
+            <if test="matchType!=null and matchType!=''">matchtype,</if>
+            <if test="matchContent!=null and matchContent!=''">matchcontent,</if>
+            <if test="commitContent!=null and commitContent!=''">commitcontent,</if>
+            createtime,updatetime
+        </trim> values <trim prefix="(" suffix=")">
+            <choose>
+                <when test="monitorId!=null and monitorId!=''">#{monitorId,jdbcType=VARCHAR},</when>
+                <otherwise>uuid(),</otherwise>
+            </choose>
+            <if test="userId!=null and userId!=''">#{userId,jdbcType=VARCHAR},</if>
+            <if test="name!=null and name!=''">#{name,jdbcType=VARCHAR},</if>
+            <if test="url!=null and url!=''">#{url,jdbcType=VARCHAR},</if>
+            <if test="watchTime!=null and watchTime!=''">#{watchTime,jdbcType=INTEGER},</if>
+            <if test="type!=null and type!=''">#{type,jdbcType=VARCHAR},</if>
+            <if test="warnMethod!=null and warnMethod!=''">#{warnMethod,jdbcType=VARCHAR},</if>
+            <if test="state!=null and state!=''">#{state,jdbcType=INTEGER},</if>
+            <if test="requestMethod!=null and requestMethod!=''">#{requestMethod,jdbcType=VARCHAR},</if>
+            <if test="matchTarget!=null and matchTarget!=''">#{matchTarget,jdbcType=INTEGER},</if>
+            <if test="matchType!=null and matchType!=''">#{matchType,jdbcType=INTEGER},</if>
+            <if test="matchContent!=null and matchContent!=''">#{matchContent,jdbcType=VARCHAR},</if>
+            <if test="commitContent!=null and commitContent!=''">#{commitContent,jdbcType=VARCHAR},</if>
+            now(),now()
+        </trim>
+    </insert>
+
+    <select id="queryBySelective" parameterType="cn.fyd.model.Monitor" resultType="cn.fyd.model.Monitor">
+        select * from monitor <include refid="Example_Where_Clause" /> order by createtime desc
+    </select>
+
+    <update id="closeMonitor">
+        update monitor set state=#{state}, updatetime=now() where monitorid=#{monitorId}
+    </update>
+
+    <update id="editMonitorByPrimaryKey" parameterType="cn.fyd.model.Monitor">
+        update monitor <include refid="Set_IncludeNull_Clause"/> where monitorid=#{monitorId}
+    </update>
+
+    <select id="countByPrimaryKey" parameterType="java.lang.String" resultType="java.lang.Integer">
+        select count(*) from monitor where monitorid=#{monitorId}
+    </select>
+
+    <select id="getMonitorBySelective" parameterType="cn.fyd.model.Monitor" resultType="cn.fyd.model.Monitor">
+        select * from monitor <include refid="Example_Where_Clause" />
+    </select>
+
+    <select id="countBySelective" parameterType="cn.fyd.model.Monitor" resultType="java.lang.Integer">
+        select count(*) from monitor where name=#{name} and url=#{url} and state=#{state} and monitorid!=#{monitorId}
+    </select>
+
+    <delete id="delMonitorByPrimaryKey" parameterType="java.lang.String">
+        delete from monitor where monitorid=#{monitorid}
+    </delete>
+
+    <select id="getMonitorByPrimaryKey" parameterType="java.lang.String" resultType="cn.fyd.model.Monitor">
+        select * from monitor where monitorid=#{monitorId}
+    </select>
+</mapper>

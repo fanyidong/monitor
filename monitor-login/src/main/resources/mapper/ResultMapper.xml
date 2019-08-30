@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.fyd.monitorlogin.dao.ResultDao">
+    <sql id="Example_Where_Clause">
+        <trim prefix="where 1=1">
+            <if test="resultId!=null and resultId!=''">and resultid=#{resultId}</if>
+            <if test="monitorId!=null and monitorId!=''">and monitorid=#{monitorId}</if>
+            <if test="status!=null and status!=''">and status=#{status}</if>
+            <if test="responseTime!=null">and responsetime=#{responseTime}</if>
+            <if test="others!=null and others!=''">and others=#{others}</if>
+            <if test="createTime!=null">and createtime=#{createTime}</if>
+            <if test="usable!=null">and usable=#{usable}</if>
+            <if test="disabledReason!=null">and disabledreason=#{disabledReason}</if>
+        </trim>
+    </sql>
+
+    <sql id="Example_Set_Clause">
+        <trim prefix="set">
+            <if test="resultId!=null and resultId!=''">resultid=#{resultId},</if>
+            <if test="monitorId!=null and monitorId!=''">monitorId=#{monitorId},</if>
+            <if test="status!=null and status!=''">status=#{status},</if>
+            <if test="responseTime!=null">responseTime=#{responseTime},</if>
+            <if test="others!=null and others!=''">others=#{others},</if>
+            <if test="createTime!=null">createtime=#{createTime},</if>
+            <if test="usable!=null">usable=#{usable},</if>
+            <if test="disabledReason!=null">disabledreason=#{disabledReason},</if>
+        </trim>
+    </sql>
+
+    <insert id="saveResult" parameterType="cn.fyd.model.Result">
+        insert into result
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            resultId,
+            <if test="monitorId!=null and monitorId!=''">monitorid,</if>
+            <if test="status!=null and status!=''">status,</if>
+            <if test="responseTime!=null  and responseTime!=''">responsetime,</if>
+            <if test="others!=null and others!=''">others,</if>
+            <if test="usable!=null and usable!=''">usable,</if>
+            <if test="disabledReason!=null and disabledReason!=''">disabledreason,</if>createtime
+        </trim> values <trim prefix="(" suffix=")" suffixOverrides=",">
+            <choose>
+                <when test="resultId!=null and resultId!=''">#{resultId,jdbcType=VARCHAR},</when>
+                <otherwise>uuid(),</otherwise>
+            </choose>
+            <if test="monitorId!=null and monitorId!=''">#{monitorId},</if>
+            <if test="status!=null and status!=''">#{status},</if>
+            <if test="responseTime!=null and responseTime!=''">#{responseTime},</if>
+            <if test="others!=null and others!=''">#{others},</if>
+            <if test="usable!=null and usable!=''">#{usable},</if>
+            <if test="disabledReason!=null and disabledReason!=''">#{disabledReason},</if>now()
+        </trim>
+    </insert>
+
+    <select id="getResultsByMonitorId" parameterType="java.lang.String" resultType="cn.fyd.model.Result">
+        select * from result
+        <if test="monitorId!=null and monitorId!=''">where monitorid=#{monitorId}</if>
+        order by createTime desc
+    </select>
+
+    <delete id="delResultsByMonitorId" parameterType="java.lang.String">
+        delete from result where monitorid=#{monitorId}
+    </delete>
+</mapper>
